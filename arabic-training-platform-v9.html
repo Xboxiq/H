@@ -2491,7 +2491,7 @@
           <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
         </svg>
         <span class="nav-label">مختبر السيناريوهات</span>
-        <span class="nav-badge" style="background:linear-gradient(135deg,#F97316,#EF4444);color:#fff;">40</span>
+        <span class="nav-badge" style="background:linear-gradient(135deg,#F97316,#EF4444);color:#fff;">54</span>
       </div>
 
       <div class="nav-item" data-page="psych">
@@ -2500,7 +2500,7 @@
           <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.84A2.5 2.5 0 0 0 14.5 2"/>
         </svg>
         <span class="nav-label">الدوافع النفسية</span>
-        <span class="nav-badge" style="background:linear-gradient(135deg,#8B5CF6,#0EA5E9);color:#fff;">7</span>
+        <span class="nav-badge" style="background:linear-gradient(135deg,#8B5CF6,#0EA5E9);color:#fff;">15</span>
       </div>
 
       <span class="nav-section-label">الإدارة</span>
@@ -5678,13 +5678,15 @@
         <!-- Category filters -->
         <div style="display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; align-items:center;">
           <span style="font-size:11px; font-weight:700; color:var(--text-faint); letter-spacing:1px; text-transform:uppercase; margin-left:4px;">الفئة:</span>
-          <button class="sim-cat-btn active" onclick="filterSimCat('all', this)">الكل (40)</button>
+          <button class="sim-cat-btn active" onclick="filterSimCat('all', this)">الكل (54)</button>
           <button class="sim-cat-btn" onclick="filterSimCat('callcenter', this)">📞 كول سنتر (10)</button>
           <button class="sim-cat-btn" onclick="filterSimCat('sales', this)">💼 مبيعات (9)</button>
           <button class="sim-cat-btn" onclick="filterSimCat('account', this)">🤝 أكونت منجر (5)</button>
           <button class="sim-cat-btn" onclick="filterSimCat('repair', this)">🔧 مركز الصيانة (7)</button>
           <button class="sim-cat-btn" onclick="filterSimCat('social', this)">📱 سوشيال ميديا (5)</button>
           <button class="sim-cat-btn" onclick="filterSimCat('negotiation', this)">💼 تفاوض وظيفي (4)</button>
+          <button class="sim-cat-btn" onclick="filterSimCat('accountant', this)">🧮 محاسب (7)</button>
+          <button class="sim-cat-btn" onclick="filterSimCat('developer', this)">💻 مبرمج (7)</button>
         </div>
 
         <!-- Scenario cards grid -->
@@ -6149,6 +6151,298 @@
           </div>
         </div>
 
+
+        <!-- ══ 8. المعاملة بالمثل ══ -->
+        <div class="psych-acc-item" id="pacc-8">
+          <div class="psych-acc-header" onclick="togglePsychAcc(this)">
+            <div class="psych-acc-emoji">🎁</div>
+            <div class="psych-acc-title">
+              <div class="psych-acc-name">٨ — المعاملة بالمثل · Reciprocity</div>
+              <div class="psych-acc-ref">Robert Cialdini، Influence 1984</div>
+            </div>
+            <div class="psych-acc-badges">
+              <span class="tag" style="font-size:10px;background:rgba(34,197,94,0.12);color:#22C55E;border:1px solid rgba(34,197,94,0.2);">بناء الولاء</span>
+            </div>
+            <svg class="psych-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="psych-acc-body">
+            <div class="psych-acc-grid">
+              <div class="psych-info-block full-width">
+                <div class="psych-info-label">الشرح العملي</div>
+                <div class="psych-info-text">حين يحصل الإنسان على شيء (معلومة، خدمة، هدية) يشعر بدافع لا شعوري لردّ الجميل. هذا ليس أدباً — بل برمجة بيولوجية عمرها آلاف السنين. أعطِ أولاً بقيمة حقيقية، والباب يُفتح وحده.</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📞 كول سنتر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"قبل ما نتكلم عن الباقة — خليني أفعّل لك ميزة مجانية ما كثير ناس يعرفون عنها. كذا تجربها وأنت تفكر."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📈 مبيعات</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"خليني أرسل لك تقرير السوق اللي أعددناه — ما يلزمك تشتري شي. بس لو ساعدك، كمّلنا الحديث."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">🤝 أكونت منجر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"نظّمت لكم ورشة مجانية لفريقكم عن الموضوع اللي ذكرته. لا عقد ولا التزام — فقط قيمة."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">💻 تقنية / هواتف</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"خليني أنظّف لك الجهاز وأحدّث النظام مجاناً — هذا يأخذ دقيقتين. بعدها لو تبغى نتكلم عن الحماية، أنا هنا."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ 9. الالتزام والاتساق ══ -->
+        <div class="psych-acc-item" id="pacc-9">
+          <div class="psych-acc-header" onclick="togglePsychAcc(this)">
+            <div class="psych-acc-emoji">🔗</div>
+            <div class="psych-acc-title">
+              <div class="psych-acc-name">٩ — الالتزام والاتساق · Commitment & Consistency</div>
+              <div class="psych-acc-ref">Freedman & Fraser، Foot-in-the-door 1966</div>
+            </div>
+            <div class="psych-acc-badges">
+              <span class="tag" style="font-size:10px;background:rgba(139,92,246,0.12);color:#8B5CF6;border:1px solid rgba(139,92,246,0.2);">بناء القرار</span>
+            </div>
+            <svg class="psych-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="psych-acc-body">
+            <div class="psych-acc-grid">
+              <div class="psych-info-block full-width">
+                <div class="psych-info-label">الشرح العملي</div>
+                <div class="psych-info-text">حين يقول الإنسان "نعم" لشيء صغير، يصبح من الصعب نفسياً أن يقول "لا" لشيء أكبر يتّسق مع الأول. الدماغ يكره التناقض مع الذات. ابدأ بطلب صغير جداً — ثم ابنِ عليه.</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📞 كول سنتر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"هل توافقني إن خدمة العملاء مهمة لك؟ (نعم) — ممتاز. الباقة اللي أقترحها تُحسّن هذا الجانب تحديداً."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📈 مبيعات</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"لو أعطيتك عيّنة مجانية تجربها أسبوع — بدون التزام — توافق؟ (نعم) — ممتاز. بعد الأسبوع نتكلم."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">🤝 أكونت منجر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"هل توافقون إن الأولوية هي تقليل وقت التعطل؟ (نعم) — هذا بالضبط ما يحلّه الاقتراح اللي بقدمه."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">💻 تقنية / هواتف</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"تحب جهازك يبقى سريع سنتين إضافية؟ (نعم) — إذن الحماية اللي أقترحها هي بالضبط اللي تضمن لك هذا."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ 10. الندرة vs الاستعجال ══ -->
+        <div class="psych-acc-item" id="pacc-10">
+          <div class="psych-acc-header" onclick="togglePsychAcc(this)">
+            <div class="psych-acc-emoji">⏰</div>
+            <div class="psych-acc-title">
+              <div class="psych-acc-name">١٠ — الندرة مقابل الاستعجال · Scarcity vs. Urgency</div>
+              <div class="psych-acc-ref">Cialdini + Worchel et al.، 1975</div>
+            </div>
+            <div class="psych-acc-badges">
+              <span class="tag" style="font-size:10px;background:rgba(239,68,68,0.1);color:#EF4444;border:1px solid rgba(239,68,68,0.2);">حذر: سلاح ذو حدّين</span>
+            </div>
+            <svg class="psych-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="psych-acc-body">
+            <div class="psych-acc-grid">
+              <div class="psych-info-block full-width">
+                <div class="psych-info-label">الشرح العملي</div>
+                <div class="psych-info-text"><strong>الندرة:</strong> "الكمية محدودة" — تعمل لأن الدماغ يُقيّم الشيء النادر أعلى. <strong>الاستعجال:</strong> "العرض ينتهي الليلة" — يعمل لأنه يُفعّل الخوف من الفوات (FOMO). <strong>الفرق الخطير:</strong> الندرة الحقيقية تبني مصداقية. الندرة المُصطنعة تُدمّرها. استخدمهما فقط حين يكونان حقيقيين.</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📞 كول سنتر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"هذا العرض فعلاً عندي صلاحية أعطيه لـ 5 عملاء اليوم — استهلكت 3. مش ضغط — بس أبغى أكون صريح معك."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📈 مبيعات</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"الحقيقة — المخزون الحالي ينتهي هذا الأسبوع والدفعة الجاية بعد 40 يوم. لو تقدر تقرر الحين، أضمنه لك."</div>
+              </div>
+              <div class="psych-warning-block">
+                <div class="psych-warning-icon">⚠️</div>
+                <div class="psych-warning-text"><strong>تحذير:</strong> الندرة المُصطنعة ("آخر قطعة" وهي ليست كذلك) تُدمّر الثقة نهائياً لو اكتُشفت. استخدم فقط ما هو حقيقي.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ 11. قاعدة الذروة والنهاية ══ -->
+        <div class="psych-acc-item" id="pacc-11">
+          <div class="psych-acc-header" onclick="togglePsychAcc(this)">
+            <div class="psych-acc-emoji">🏔️</div>
+            <div class="psych-acc-title">
+              <div class="psych-acc-name">١١ — قاعدة الذروة والنهاية · Peak-End Rule</div>
+              <div class="psych-acc-ref">Kahneman & Fredrickson، 1993</div>
+            </div>
+            <div class="psych-acc-badges">
+              <span class="tag" style="font-size:10px;background:rgba(14,165,233,0.12);color:#0EA5E9;border:1px solid rgba(14,165,233,0.2);">إدارة التجربة</span>
+            </div>
+            <svg class="psych-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="psych-acc-body">
+            <div class="psych-acc-grid">
+              <div class="psych-info-block full-width">
+                <div class="psych-info-label">الشرح العملي</div>
+                <div class="psych-info-text">الإنسان لا يتذكر التجربة كاملة — يتذكر لحظتين فقط: <strong>الذروة</strong> (أقوى لحظة عاطفية) و<strong>النهاية</strong> (آخر شعور). مكالمة عادية بإغلاق رائع = تقييم ممتاز. مكالمة ممتازة بإغلاق بارد = تقييم متوسط. ركّز على هاتين اللحظتين.</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📞 كول سنتر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"قبل ما أختم — بدّي أشكرك شخصياً لأنك اتصلت. وخلّيني أأكد: المشكلة حُلّت، ورح أتابعها شخصياً. يوم سعيد."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📈 مبيعات</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"بعد التوقيع: 'أبارك لك هذا القرار — وأضمن لك شخصياً: أي شي تحتاجه خلال أول 30 يوم، اتصل عليّ مباشرة.'"</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">💻 تقنية / هواتف</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"بعد الإصلاح: 'فحصت الجهاز كامل — كل شي تمام. وحطيت لك واقي شاشة هدية. ضمانك 60 يوم.' — المفاجأة الأخيرة = تقييم 5 نجوم."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ 12. تأثير إيكيا ══ -->
+        <div class="psych-acc-item" id="pacc-12">
+          <div class="psych-acc-header" onclick="togglePsychAcc(this)">
+            <div class="psych-acc-emoji">🔨</div>
+            <div class="psych-acc-title">
+              <div class="psych-acc-name">١٢ — تأثير إيكيا · IKEA Effect</div>
+              <div class="psych-acc-ref">Norton, Mochon & Ariely، 2012</div>
+            </div>
+            <div class="psych-acc-badges">
+              <span class="tag" style="font-size:10px;background:rgba(234,179,8,0.12);color:#EAB308;border:1px solid rgba(234,179,8,0.2);">المشاركة</span>
+            </div>
+            <svg class="psych-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="psych-acc-body">
+            <div class="psych-acc-grid">
+              <div class="psych-info-block full-width">
+                <div class="psych-info-label">الشرح العملي</div>
+                <div class="psych-info-text">الإنسان يُقدّر الشيء أكثر حين يُساهم في صنعه. أثاث IKEA يبدو أجمل لصاحبه لأنه ركّبه بيده. في المبيعات: اجعل العميل يُشارك في تصميم الحل — سيدافع عنه بعدها كأنه فكرته.</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📞 كول سنتر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"بدل ما أختار لك — خليني أعطيك 3 ميزات تختار منها اثنتين. الباقة راح تكون مصممة على ذوقك أنت."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📈 مبيعات</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"خليني نبني العرض سوا — أنت تقول لي أولوياتك وأنا أُفصّل الحل على مقاسك. كذا ما تشتري شي جاهز — تشتري شي أنت صمّمته."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">🤝 أكونت منجر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"نحتاج رأيكم في تصميم الـ roadmap القادم — لأن الشراكة الحقيقية يعني قراركم يؤثر في اتجاهنا."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ 13. تأثير التملّك ══ -->
+        <div class="psych-acc-item" id="pacc-13">
+          <div class="psych-acc-header" onclick="togglePsychAcc(this)">
+            <div class="psych-acc-emoji">✋</div>
+            <div class="psych-acc-title">
+              <div class="psych-acc-name">١٣ — تأثير التملّك · Endowment Effect</div>
+              <div class="psych-acc-ref">Richard Thaler، 1980</div>
+            </div>
+            <div class="psych-acc-badges">
+              <span class="tag" style="font-size:10px;background:rgba(34,197,94,0.12);color:#22C55E;border:1px solid rgba(34,197,94,0.2);">التجربة المجانية</span>
+            </div>
+            <svg class="psych-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="psych-acc-body">
+            <div class="psych-acc-grid">
+              <div class="psych-info-block full-width">
+                <div class="psych-info-label">الشرح العملي</div>
+                <div class="psych-info-text">لحظة ما يمسك الإنسان شيئاً بيده أو يستخدمه — يصبح "ملكه" نفسياً. التخلي عنه يُحسب كخسارة لا كقرار. لهذا "جرّبه 7 أيام مجاناً" أقوى من أي خصم — لأنه بعد 7 أيام سيشعر أن إعادته = خسارة.</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📞 كول سنتر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"خلّيني أفعّل لك الخدمة تجريبياً 7 أيام — بدون أي التزام. جرّبها وأنت تقرر. ما يُخصم شي لو ألغيت."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📈 مبيعات</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"خذ الجهاز معك 3 أيام. استخدمه بشكل طبيعي. لو ما ناسبك — ارجعه بدون سؤال. بس أراهنك ما بترجعه."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">💻 تقنية / هواتف</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"خلّيني أركّب لك الحماية الحين — مجاناً. لو بعد أسبوع شفت فرق — ادفع. لو لا — أشيلها بدون ريال."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ 14. تأثير التعرّض البسيط ══ -->
+        <div class="psych-acc-item" id="pacc-14">
+          <div class="psych-acc-header" onclick="togglePsychAcc(this)">
+            <div class="psych-acc-emoji">🔄</div>
+            <div class="psych-acc-title">
+              <div class="psych-acc-name">١٤ — تأثير التعرّض البسيط · Mere Exposure Effect</div>
+              <div class="psych-acc-ref">Robert Zajonc، 1968</div>
+            </div>
+            <div class="psych-acc-badges">
+              <span class="tag" style="font-size:10px;background:rgba(14,165,233,0.12);color:#0EA5E9;border:1px solid rgba(14,165,233,0.2);">المتابعة</span>
+            </div>
+            <svg class="psych-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="psych-acc-body">
+            <div class="psych-acc-grid">
+              <div class="psych-info-block full-width">
+                <div class="psych-info-label">الشرح العملي</div>
+                <div class="psych-info-text">كلما زاد تعرّض الإنسان لشيء (اسم، وجه، علامة تجارية) كلما زادت ألفته ومحبته له — بدون سبب واعٍ. لهذا المتابعة 5-7 مرات ليست "إزعاج" — هي بناء ألفة. الشرط: كل تواصل يُضيف قيمة جديدة.</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📈 مبيعات</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"المتابعة 1: مقال مفيد. المتابعة 2: إحصائية تخصّه. المتابعة 3: سؤال عن وضعه. المتابعة 4: دعوة لحدث. المتابعة 5: العرض. — كل مرة قيمة مختلفة."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">🤝 أكونت منجر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"أرسل لك تحديث شهري عن أداء حسابكم — حتى لو ما عندك سؤال. هذا يخليني حاضر في ذهنك دائماً بقيمة لا بإزعاج."</div>
+              </div>
+              <div class="psych-warning-block">
+                <div class="psych-warning-icon">⚠️</div>
+                <div class="psych-warning-text"><strong>القاعدة:</strong> كل متابعة بدون قيمة جديدة = إزعاج. كل متابعة بقيمة جديدة = بناء ثقة. الفرق شاسع.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ 15. مقاومة الضغط (Reactance) ══ -->
+        <div class="psych-acc-item" id="pacc-15">
+          <div class="psych-acc-header" onclick="togglePsychAcc(this)">
+            <div class="psych-acc-emoji">🚫</div>
+            <div class="psych-acc-title">
+              <div class="psych-acc-name">١٥ — مقاومة الضغط · Psychological Reactance</div>
+              <div class="psych-acc-ref">Jack Brehm، 1966</div>
+            </div>
+            <div class="psych-acc-badges">
+              <span class="tag red" style="font-size:10px;">احذر: يُنتج عكس المطلوب</span>
+            </div>
+            <svg class="psych-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="psych-acc-body">
+            <div class="psych-acc-grid">
+              <div class="psych-info-block full-width">
+                <div class="psych-info-label">الشرح العملي</div>
+                <div class="psych-info-text">حين يشعر الإنسان أن حريته مُهدّدة (ضغط، إلحاح، "لازم تقرر الحين") ينشأ ردّ فعل عكسي: يرفض <strong>حتى لو كان يريد القبول</strong>. كل جملة فيها "لازم" أو "ما عندك خيار" تُفعّل Reactance. الحل: أعطِ الحرية أولاً — القرار الحر يُسرّع القبول.</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📞 كول سنتر</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"أنا ما أضغط عليك — خذ وقتك. بس خليني أعطيك المعلومة الكاملة عشان قرارك يكون واعي. بعدها أنت حر."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">📈 مبيعات</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"ممكن يكون مناسب لك وممكن لا — وهذا طبيعي. لو قلت لي 'لا' أحترم قرارك. بس لو قلت 'نعم' — هذا اللي بتحصل عليه..."</div>
+              </div>
+              <div class="psych-info-block">
+                <div class="psych-info-label">💻 تقنية / هواتف</div>
+                <div style="background:rgba(102,252,241,0.05);border:1px solid var(--border-hover);border-radius:var(--radius-sm);padding:11px 13px;font-size:12px;color:var(--text);line-height:1.7;font-style:italic;">"ما أبغى أقنعك — أبغى أعطيك المعلومة وأنت تقرر. لو ما اقتنعت — مافي مشكلة وأنا ما أزعلك. القرار قرارك."</div>
+              </div>
+              <div class="psych-warning-block">
+                <div class="psych-warning-icon">💡</div>
+                <div class="psych-warning-text"><strong>المفارقة:</strong> كلما أعطيت العميل حرية الرفض أكثر، كلما زادت احتمالية قبوله. الإلحاح يُنتج رفضاً — والحرية تُنتج ثقة.</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div><!-- /psych-accordion -->
 
       <!-- ── GOLDEN COMBINATIONS FOOTER ── -->
@@ -7593,6 +7887,208 @@
       expert_move: 'تحويل الطلب من «تغيير سياسة» إلى «تجربة قابلة للقياس» يُزيل الحاجز النفسي الأكبر. إعطاء المدير سلطة الحكم بالأرقام يجعله يشعر بالسيطرة لا بالانتقاص من سلطته.',
       principle: 'مبدأ Reactance Theory: الناس يُقاومون ما يُشعرهم أن حريتهم مُقيّدة. الطلب كـ«تجربة» لا «حق» يُزيل الشعور بالتقييد ويُحوّل المدير من خصم يدافع عن موقفه إلى حكم ينتظر الإثبات.'
     }
+    // ─────────────────────────────────────────────
+    //  محاسب (7 سيناريوهات)
+    // ─────────────────────────────────────────────
+    acc_01: {
+      id: 'acc_01', category: 'accountant', title: 'ضغط المدير لتعديل قيد قبل الإغلاق', difficulty: 5,
+      setup: 'نهاية الشهر، الساعة 4 عصراً. مديرك المباشر يطلب منك تأجيل تسجيل مصروف بقيمة 180,000 للشهر القادم لتحسين أرقام الميزانية أمام الإدارة العليا. القيد مستحق هذا الشهر فعلياً.',
+      dialogue_opener: 'اسمع، المصروف هذا سجّله الشهر الجاي. الأرقام لازم تطلع نظيفة للمدير العام. هذا أمر بسيط.',
+      psychological_context: 'مثلث الاحتيال (Cressey 1953): الضغط (Pressure) من المدير + الفرصة (Opportunity) لأنك أنت من يسجّل + التبرير (Rationalization) بأنه "أمر بسيط". الخطر: إذا وافقت مرة، ستُطلب منك أشياء أكبر. إذا رفضت بعدوانية، تخسر علاقتك بمديرك.',
+      choices: [
+        { text: 'تمام، ما في مشكلة. أسجّله الشهر الجاي.', score: 0, feedback: 'وافقت على تلاعب محاسبي. هذا يُعرّضك شخصياً للمساءلة القانونية لو اكتُشف. وسيتكرر الطلب كل شهر.', consequence: '(بعد شهرين) نفس الطلب لكن بمبلغ أكبر — 400,000.' },
+        { text: 'لا، هذا غلط ومخالف وأرفض رفضاً تاماً. سأبلّغ المدقق.', score: 20, feedback: 'موقف أخلاقي صحيح لكن التنفيذ كارثي. التصعيد الفوري يُدمّر العلاقة ويجعل المدير عدواً قبل أن تُعطيه فرصة التراجع.', consequence: 'المدير يعتبرك تهديداً ويبدأ بتهميشك.' },
+        { text: 'أفهم الضغط اللي عليك، بس هذا القيد مستحق هذا الشهر فعلياً. لو أجّلته وجاء المدقق — أنا وأنت نتحمّل المسؤولية. خلّيني أشوف حل ثاني يحسّن الصورة بدون مخاطرة.', score: 100, feedback: 'ثلاث حركات: تعاطف مع ضغطه (أفهم)، تحذير واقعي بلا تهديد (أنا وأنت نتحمّل)، تقديم بديل (حل ثاني). يحفظ العلاقة ويحمي نزاهتك.', consequence: 'المدير يتراجع: "طيب وش الحل الثاني اللي عندك؟"' },
+        { text: 'ممكن نعرضه كمصروف مقدّم بدل حذفه — كذا يطلع بالميزانية بس ما يأثر على صافي الشهر.', score: 60, feedback: 'حل إبداعي لكنه خطير — تصنيف مصروف مستحق كـ"مقدّم" قد يكون مخالفة أيضاً حسب المعيار المحاسبي. يحتاج تحقق.', consequence: 'المدقق يسأل: "ليش هذا المصروف مصنّف كمقدّم؟"' }
+      ],
+      expert_move: 'المحاسب المحترف يعترف بالضغط ثم يُقدّم البديل الشرعي: "خلّيني أعرض لك 3 طرق قانونية نحسّن بها الأرقام بدون مخاطرة — مثل تسريع تحصيل مستحقات أو تأجيل مشتريات مخططة".',
+      principle: 'مبدأ مثلث الاحتيال (Cressey): التلاعب يبدأ صغيراً ويكبر. الرفض الأخلاقي الذكي يحمي نزاهتك دون تدمير العلاقة — لأنك تقدّم بديلاً لا مجرد "لا".'
+    },
+    acc_02: {
+      id: 'acc_02', category: 'accountant', title: 'عميل يرفض تسوية حساب ويتهمك بالخطأ', difficulty: 3,
+      setup: 'عميل تجاري مهم لديه رصيد مستحق 47,000. أرسلت له كشف حساب تفصيلي. ردّ بغضب يقول إن الأرقام خاطئة وأنه دفع المبلغ كاملاً.',
+      dialogue_opener: 'كشف حسابكم غلط! أنا دفعت كل شيء — عندي إيصالات تثبت. هذا إهمال منكم!',
+      psychological_context: 'التحيز للتأكيد (Confirmation Bias): العميل متأكد أنه دفع، فيُفسّر أي معلومة بما يدعم قناعته. المواجهة المباشرة "أنت مخطئ" تزيد مقاومته. الحل: الاستكشاف المشترك بدل المواجهة.',
+      choices: [
+        { text: 'أرقامنا صحيحة 100%. راجع إيصالاتك مرة ثانية.', score: 5, feedback: 'مواجهة مباشرة تُصلّب موقفه وتُحوّل الخلاف من محاسبي إلى شخصي.', consequence: 'عندي الإيصالات قدامي! رح أتكلم مع المدير العام تبعكم!' },
+        { text: 'ممكن يكون عندنا خطأ — خلّيني أراجع من جديد.', score: 30, feedback: 'تنازلت مبكراً بدون التحقق. هذا يُضعف مصداقيتك لو تبيّن أنك صح.', consequence: 'أيوه راجع، وأتوقع تعتذرون لي.' },
+        { text: 'أقدّر تواصلك وأفهم إن هذا مزعج. خلّيني نعمل شي: أرسل لي الإيصالات اللي عندك ونطابقها سوا مع كشف الحساب — سطر بسطر. إذا فيه خطأ منّا، نعتذر ونصلّحه فوراً.', score: 100, feedback: 'أربع حركات: تعاطف (أقدّر)، لا أنكر ولا أُقرّ (نطابق سوا)، أطلب الدليل بأدب (أرسل لي)، ألتزم بالتصحيح لو كان الخطأ منّي. هذا يُنزل الدفاعية ويفتح التحقق الفعلي.', consequence: 'حسناً... أرسل لك الإيصالات. بس أتوقع تلقاها كاملة.' },
+        { text: 'العميل دائماً على حق — سأشطب المبلغ من الحساب.', score: 0, feedback: 'تنازل مالي بدون تحقق = خسارة حقيقية للشركة وسابقة خطيرة.', consequence: '(كل عميل يعرف أنك تشطب بمجرد الاعتراض)' }
+      ],
+      expert_move: 'المحاسب المحترف يستخدم "التحقق المشترك" — يُحوّل الخلاف من "أنا ضدك" إلى "نحن نبحث عن الحقيقة معاً". هذا يُزيل العداوة ويوصل للنتيجة الصحيحة.',
+      principle: 'مبدأ Professional Skepticism (ISA 200): المحاسب لا يقبل ولا يرفض بدون دليل — يتحقق. والتحقق المشترك مع العميل أقوى من المواجهة.'
+    },
+    acc_03: {
+      id: 'acc_03', category: 'accountant', title: 'اكتشاف فرق في صندوق نهاية اليوم', difficulty: 4,
+      setup: 'نهاية يوم عمل. أنت وزميلك تعدّان الصندوق. الفرق: نقص 4,300. زميلك يقترح "نقسّمها من جيبنا ونخلّص" لأن المدير سيغضب.',
+      dialogue_opener: 'اسمع، 4,300 مبلغ بسيط. لو بلّغنا المدير بيسوّي مشكلة كبيرة ويمكن يشك فينا. خلّينا ندفعها من جيبنا ونريّح أنفسنا.',
+      psychological_context: 'Moral Courage — الشجاعة الأخلاقية تحت ضغط الزمالة. زميلك ليس لصّاً — هو خائف. لكن التغطية تُنشئ سابقة خطيرة. إذا اكتُشف لاحقاً أنكم غطّيتم فرقاً، الشبهة ستكون أكبر بكثير.',
+      choices: [
+        { text: 'معك حق، ندفعها ونريّح أنفسنا.', score: 0, feedback: 'وافقت على تغطية فرق مالي — هذا يُنشئ سابقة. لو تكرر أو اكتُشف، ستُتّهمان بالتواطؤ.', consequence: '(بعد أسبوع: فرق 12,000 — وزميلك يقترح نفس الحل)' },
+        { text: 'لا، لازم نبلّغ المدير فوراً. هذا واجبنا.', score: 60, feedback: 'موقف صحيح لكن التنفيذ جاف. لم تُراعِ خوف زميلك ولم تُقدّم له الأمان.', consequence: 'زميلك يشعر أنك "بعته" ويبدأ يتجنّبك.' },
+        { text: 'أفهم خوفك، وأنا مثلك ما أبغى مشاكل. بس لو غطّينا الفرق اليوم وطلع بكرة فرق أكبر — الشبهة بتكون فينا. الأسلم: نبلّغ المدير سوا، ونقول "لقينا فرق ونبغى نفهم السبب". هذا يحمينا أكثر من أي شي.', score: 100, feedback: 'أربع حركات: تعاطف مع خوفه، شرح المخاطرة الحقيقية عليه شخصياً، اقتراح الحل الجماعي (سوا)، وتأطير البلاغ كحماية لا كاتهام. يُبقي الزمالة ويحمي النزاهة.', consequence: 'حسناً... معك حق. نبلّغ سوا.' },
+        { text: 'أنا ما أدفع شي من جيبي. أنت حر.', score: 15, feedback: 'رفضت المشاركة لكنك تركت زميلك يُغطّي وحده — هذا يجعلك شاهداً صامتاً وهو أسوأ.', consequence: 'زميلك يدفع وحده ويحقد عليك.' }
+      ],
+      expert_move: 'المحاسب الذكي يُحوّل الخوف إلى دافع للإبلاغ: "البلاغ يحمينا" بدل "البلاغ واجب". الناس تتحرك بالمصلحة الذاتية أسرع من الواجب الأخلاقي.',
+      principle: 'مبدأ الشجاعة الأخلاقية (Moral Courage): الإبلاغ ليس "وشاية" — هو حماية ذاتية. الفرق المالي الصغير المُغطّى اليوم يصبح فرقاً كبيراً مُتّهماً به غداً.'
+    },
+    acc_04: {
+      id: 'acc_04', category: 'accountant', title: 'موظف يطلب سلفة عاجلة خارج النظام', difficulty: 3,
+      setup: 'زميل في قسم آخر يأتيك مباشرة يطلب سلفة 3,000 "من الصندوق" لظرف عائلي طارئ. يقول: "أرجعها بكرة أول شي". لا يوجد نموذج رسمي ولا موافقة إدارية.',
+      dialogue_opener: 'أخوي أرجوك، عندي ظرف عائلي ضروري. أعطيني 3,000 من الصندوق وأرجعها بكرة. ما أقدر أنتظر الإجراءات.',
+      psychological_context: 'معضلة كولبرغ الأخلاقية (Kohlberg Moral Dilemma): التعاطف الإنساني يتعارض مع الضوابط المالية. الموافقة تُنشئ سابقة خطيرة. الرفض الجاف يُدمّر العلاقة الإنسانية. الحل: ساعده بالطريقة الصحيحة.',
+      choices: [
+        { text: 'تفضل، خذ 3,000 وأرجعها بكرة.', score: 0, feedback: 'صرف نقدي بدون موافقة = اختلاس في نظر المدقق حتى لو نيّتك حسنة. وإذا لم يُرجعها؟', consequence: '(لم يُرجعها بعد أسبوع. والآن أنت المسؤول.)' },
+        { text: 'آسف، ما أقدر. الإجراءات ما تسمح.', score: 35, feedback: 'صحيح إجرائياً لكنه إنسانياً بارد. لم تُساعده بأي بديل وتركته في أزمته.', consequence: 'الزميل يشعر أنك "حجر" ويتجنّبك لأشهر.' },
+        { text: 'أفهم ظرفك وأتمنى أساعدك. بس الصندوق ما أقدر أمسّه بدون موافقة — هذا يحميني ويحميك. خلّيني أساعدك: الحل الأسرع هو نموذج السلفة الطارئة — أقدر أرسله لمديرك الحين ويوقّعه خلال ساعة. كذا تاخذ المبلغ رسمياً وما يصير عليك شي.', score: 100, feedback: 'ثلاث حركات: تعاطف حقيقي، رفض واضح مع تبرير يحميه هو أيضاً، وتقديم حل بديل فوري وعملي. يحفظ العلاقة والنزاهة.', consequence: 'شكراً — وين النموذج؟ أبغى أخلّصه الحين.' },
+        { text: 'روح للموارد البشرية واطلب سلفة رسمية.', score: 45, feedback: 'صحيح لكنه بطيء وبارد. لم تُساعده في تسريع العملية.', consequence: 'الموارد البشرية تقول "ارجع بكرة". الزميل يزداد ضغطاً.' }
+      ],
+      expert_move: 'المحاسب المحترف لا يقول "لا" فقط — يقول "لا بهذه الطريقة، لكن نعم بهذه الطريقة". يحفظ الضوابط ويُساعد الإنسان.',
+      principle: 'مبدأ Kohlberg: المستوى الأخلاقي الأعلى ليس الطاعة العمياء للقواعد ولا كسرها — بل إيجاد حل يُحقق العدالة ضمن الإطار الشرعي.'
+    },
+    acc_05: {
+      id: 'acc_05', category: 'accountant', title: 'المدقق يطلب وثيقة لا تملكها', difficulty: 4,
+      setup: 'المدقق الخارجي يطلب عقد مورّد محدد كجزء من تدقيق نهاية السنة. بعد البحث، تبيّن أن العقد الأصلي مفقود — ربما لم يُوقَّع رسمياً أو ضاع من الأرشيف.',
+      dialogue_opener: 'أحتاج عقد المورّد [س] — الأصل الموقّع. هذا ضمن عيّنة التدقيق ولا أستطيع المتابعة بدونه.',
+      psychological_context: 'ضغط التدقيق يُغري بالكذب ("العقد عند المورّد") أو التأخير ("أرسله لك بكرة") أو التبرير ("ما يحتاج عقد"). كل هذه ردود تُفاقم المشكلة. الشفافية المُسيطَر عليها هي الحل.',
+      choices: [
+        { text: 'العقد عند المورّد، أطلبه وأرسله لك.', score: 10, feedback: 'كذبت. لو طلب المدقق من المورّد مباشرة واكتشف أنه غير موجود — فقدت مصداقيتك كلها.', consequence: 'المدقق يتواصل مع المورّد مباشرة. لا عقد عندهم أيضاً.' },
+        { text: 'ما عندنا عقد رسمي مع هذا المورّد.', score: 40, feedback: 'صدق لكنه ناقص — لم تُقدّم بديلاً أو تفسيراً. المدقق سيكتب ملاحظة سلبية.', consequence: 'المدقق يسجّل: "غياب عقد رسمي — مخاطرة عالية".' },
+        { text: 'بصراحة، بعد البحث المكثّف لم أجد العقد الأصلي الموقّع. لكن لدي: أوامر الشراء المُعتمدة + مراسلات الموافقة الإلكترونية + سجل المدفوعات المُطابق. أقدر أُجهّز لك ملفاً بديلاً يُثبت العلاقة التعاقدية. وبالتوازي، سأتواصل مع المورّد لتوقيع نسخة جديدة.', score: 100, feedback: 'خمس حركات: الصدق الفوري، عدم التبرير، تقديم بدائل إثباتية ملموسة، حل استباقي (نسخة جديدة)، واحترافية تُثبت أنك تعرف ما تفعل.', consequence: 'المدقق: "هذا مقبول كحل مؤقت. أرسل لي الملف البديل وتابع موضوع النسخة الجديدة."' },
+        { text: 'أحتاج وقت إضافي — ممكن ترجع الأسبوع الجاي؟', score: 20, feedback: 'تأخير بدون حل. المدقق يفسّره كمحاولة إخفاء وسيُصعّد.', consequence: 'المدقق يُسجّل: "تأخير في تقديم المستندات — سيُتابع مع الإدارة".' }
+      ],
+      expert_move: 'القاعدة الذهبية مع المدققين: لا تكذب أبداً + قدّم بدائل فورية + أظهر أنك تعمل على الحل. المدقق يحترم الشفافية أكثر بكثير من الكمال المزيّف.',
+      principle: 'مبدأ Audit Negotiation: المدقق ليس عدوّك — مهمته التحقق لا الاتهام. الشفافية المقرونة بالحل تُحوّل الملاحظة السلبية إلى "نقطة تحسين" بدل "مخالفة".'
+    },
+    acc_06: {
+      id: 'acc_06', category: 'accountant', title: 'شرح خسارة ربعية لمدير غير مالي', difficulty: 3,
+      setup: 'اجتماع مع المدير العام (خلفيته تسويقية). يطلب منك شرح لماذا الربع الثالث سجّل خسارة صافية 340,000 رغم أن المبيعات ارتفعت 12%.',
+      dialogue_opener: 'المبيعات ارتفعت 12% وأنت تقول لي خسارة؟ كيف هذا منطقي؟ وضّح لي.',
+      psychological_context: 'فجوة التواصل المالي: المدير يفهم "مبيعات أعلى = ربح أعلى" — وهذا منطقي ظاهرياً. مصطلحات مثل "الاستهلاك" و"المخصصات" ستُعقّد الأمر. التحدي: شرح مفهوم مالي معقد بلغة بسيطة بدون تقليل ذكاء المدير.',
+      choices: [
+        { text: 'هذا بسبب ارتفاع مخصص الديون المشكوك فيها وزيادة الاستهلاك على الأصول الثابتة الجديدة.', score: 15, feedback: 'شرح صحيح تقنياً لكنه لا يعني شيئاً لمدير غير مالي. خسرته في أول جملة.', consequence: 'وش يعني "مخصص ديون مشكوك فيها"؟ تكلم عربي!' },
+        { text: 'ببساطة: بعنا أكثر لكن ما قبضنا أكثر. جزء كبير من المبيعات لم يُدفع بعد، ونحن مُلزمون محاسبياً نحجز مبلغاً احتياطياً لهذه المبالغ غير المحصّلة.', score: 80, feedback: 'تبسيط ممتاز لكن ناقص — لم يُغطِّ الاستهلاك ولم يُقدّم الصورة الكاملة.', consequence: 'حسناً فهمت هذا الجزء... بس فيه شي ثاني؟' },
+        { text: 'خلّيني أوضّح بمثال: تخيّل إنك بعت بـ 100 بس قبضت 70 فقط لأن 30 زبائن ما دفعوا بعد. المحاسبة تُلزمنا نحجز "احتياطي" لهذه الـ 30 — وكأننا خسرناها مؤقتاً. هذا السبب الأول. السبب الثاني: المعدات الجديدة اللي اشتريناها لازم نوزّع تكلفتها على سنوات — هذا يظهر كمصروف إضافي كل ربع. المبيعات فعلاً ممتازة — والخسارة "محاسبية" مؤقتة وليست تشغيلية.', score: 100, feedback: 'ست حركات: مثال رقمي بسيط، لغة يومية، تفصيل السببين بشكل منفصل، طمأنة بأن المبيعات فعلاً جيدة، وتمييز "خسارة محاسبية" عن "خسارة حقيقية". المدير يفهم ويطمئن.', consequence: 'الحين فهمت. يعني الكاش الفعلي وضعنا فيه كويس؟ ممتاز.' },
+        { text: 'الخسارة طبيعية في هذه المرحلة بسبب الاستثمارات. لا تقلق.', score: 25, feedback: '"لا تقلق" تعني "أنا أعرف وأنت لا" — يشعر المدير بالتهميش. يريد فهماً لا طمأنة فارغة.', consequence: 'أنا مو قلقان — أنا أبغى أفهم. وضّح.' }
+      ],
+      expert_move: 'إطار Dan Roam: حوّل الأرقام لقصة بصرية. "بعنا 100، قبضنا 70، حجزنا 30 احتياط". كل مفهوم معقد يُبسَّط بمثال واحد ملموس.',
+      principle: 'مبدأ "Blah-Blah-Blah" (Dan Roam): كل مفهوم مالي معقد يمكن شرحه بمثال من جملتين. المحاسب المحترف يتحدث بلغة جمهوره لا بلغة مهنته.'
+    },
+    acc_07: {
+      id: 'acc_07', category: 'accountant', title: 'Burnout نهاية السنة المالية', difficulty: 3,
+      setup: 'الأسبوع الأخير من السنة المالية. أنت وفريقك (3 أشخاص) تعملون 14 ساعة يومياً منذ 10 أيام. أحد أعضاء الفريق بدأ يرتكب أخطاء كثيرة ويبدو منهكاً جداً.',
+      dialogue_opener: 'أنا تعبان... ما أقدر أركّز. كل شي يتلخبط عندي. بس لازم نخلّص.',
+      psychological_context: 'مؤشر الاحتراق الوظيفي (Maslach Burnout Inventory): الإرهاق العاطفي + تبلّد المشاعر + انخفاض الإنجاز. الموظف المُرهق لا يحتاج "شد حيلك" — يحتاج إعادة هيكلة المهام. الأخطاء في المحاسبة تحت الإرهاق قد تكلّف الشركة مئات الآلاف.',
+      choices: [
+        { text: 'كلنا تعبانين. شد حيلك باقي يومين ونخلّص.', score: 10, feedback: 'تجاهلت علامات الاحتراق. الأخطاء ستتضاعف وقد يُقدّم استقالته بعد الإغلاق مباشرة.', consequence: '(خطأ في قيد بقيمة 200,000 يُكتشف بعد أسبوعين)' },
+        { text: 'روح البيت وأكمل أنا شغلك.', score: 30, feedback: 'حل إنساني لكنه يُحمّلك عبئاً مستحيلاً ويُنشئ سابقة. الفريق يحتاج حلاً هيكلياً لا فردياً.', consequence: '(أنت تنهار في اليوم التالي)' },
+        { text: 'أشوفك منهك فعلاً — وأنا مو بأحسن حال. خلّينا نعيد تنظيم: أنت خذ المهام اللي أقل تركيز (مطابقة الأرصدة)، وأنا آخذ القيود الحرجة. نخلّص بكرة الـ deadline اللي عليك ونمدّد اللي يقبل التمديد. ساعة استراحة كل 3 ساعات مو اختيارية.', score: 100, feedback: 'أربع حركات: اعتراف بالمشكلة، إعادة توزيع حسب القدرة الذهنية، تمديد ما يمكن تمديده، وفرض استراحات. هذا يحمي جودة العمل والفريق.', consequence: 'شكراً... هذا منطقي. البدايات البسيطة ترجعلي تركيزي.' },
+        { text: 'أنا أبلّغ المدير إنك ما تقدر تشتغل.', score: 5, feedback: 'خيانة ثقة. الزميل طلب مساعدة وأنت حوّلته لمشكلة. ستفقد ثقة الفريق كله.', consequence: 'الفريق كله يفقد الثقة بك ويعمل بصمت ومقاومة.' }
+      ],
+      expert_move: 'إدارة الاحتراق ليست "ارتاح" — هي إعادة هيكلة ذكية: مهام خفيفة للمنهك، مهام حرجة للأقدر، واستراحات إجبارية. الجودة أهم من السرعة في المحاسبة.',
+      principle: 'مبدأ Maslach Burnout: الاحتراق لا يُحلّ بـ"الإرادة" — يُحلّ بإعادة هيكلة المهام. المحاسب المُرهق يرتكب أخطاء كل خطأ فيها قد يُكلّف أضعاف راتبه.'
+    },
+    // ─────────────────────────────────────────────
+    //  مبرمج (7 سيناريوهات)
+    // ─────────────────────────────────────────────
+    dev_01: {
+      id: 'dev_01', category: 'developer', title: 'Production Bug الساعة 2 فجراً', difficulty: 5,
+      setup: 'الساعة 2:15 فجراً. هاتفك يرنّ — alert من النظام: الموقع الرئيسي معطّل والعملاء لا يستطيعون إتمام عمليات الدفع. المدير التقني يتصل.',
+      dialogue_opener: 'الموقع واقف والعملاء يشتكون. شوف المشكلة الحين وابلّغني كل 15 دقيقة. ما في وقت!',
+      psychological_context: 'Stress Inoculation (Meichenbaum): تحت الضغط الشديد، الدماغ يميل إلى "التجمّد" أو "التسرّع". كلاهما خطير. التقنية: تنفّس، حدّد نطاق المشكلة، ابدأ بالأبسط. القرارات المتسرّعة الساعة 2 فجراً تُنشئ مشاكل أكبر.',
+      choices: [
+        { text: 'أبدأ أغيّر في الكود مباشرة وأجرّب حتى يشتغل.', score: 10, feedback: 'تغييرات عشوائية في الـ production بدون فهم السبب الجذري = كارثة محتملة فوق الكارثة الحالية.', consequence: 'الموقع يعود جزئياً ثم يسقط مرة ثانية بمشكلة أكبر.' },
+        { text: 'أول شي: أتحقق من الـ logs. أحدد هل المشكلة في الـ backend أم الـ database أم الـ infrastructure. أبلّغ المدير بالنطاق خلال 5 دقائق قبل أن أبدأ الإصلاح.', score: 100, feedback: 'منهجية Incident Response: 1) تحديد النطاق 2) إبلاغ أصحاب المصلحة 3) الإصلاح المُوجّه. هذا يمنع القرارات العشوائية ويُبقي الجميع على نفس الصفحة.', consequence: 'خلال 8 دقائق حدّدت: المشكلة في اتصال الـ database. الحل واضح الآن.' },
+        { text: 'أرسل رسالة للفريق كله وأنتظر أحد يساعدني.', score: 20, feedback: 'الساعة 2 فجراً لا أحد سيرد سريعاً. أضعت وقتاً ثميناً في الانتظار بدل التشخيص.', consequence: '15 دقيقة ضاعت ولا أحد ردّ.' },
+        { text: 'أعمل rollback للنسخة السابقة فوراً.', score: 70, feedback: 'حل سريع وآمن نسبياً لكنه يفترض أن المشكلة من deployment أخير. ماذا لو كانت المشكلة في الـ database أو البنية التحتية؟', consequence: 'الـ rollback نجح — لكن المشكلة ظهرت مرة أخرى بعد ساعة لأن السبب لم يكن الـ deployment.' }
+      ],
+      expert_move: 'Incident Response Protocol: 1) تنفّس 30 ثانية 2) اقرأ الـ logs لتحديد النطاق 3) أبلغ المدير بما تعرفه خلال 5 دقائق 4) نفّذ الحل الأقل مخاطرة أولاً 5) وثّق كل خطوة.',
+      principle: 'مبدأ Stress Inoculation: المبرمج المدرّب على الأزمات لا يتجمّد ولا يتسرّع — يتبع بروتوكولاً. التشخيص قبل العلاج ينطبق على الكود كما ينطبق على الطب.'
+    },
+    dev_02: {
+      id: 'dev_02', category: 'developer', title: 'Pull Request مرفوض بشكل قاسٍ', difficulty: 3,
+      setup: 'قضيت 3 أيام في كتابة feature جديدة. رفعت PR ووصلتك 14 تعليقاً من Senior Developer — بعضها قاسي اللهجة: "هذا الكود غير مقبول"، "لماذا لم تستخدم pattern X؟"، "أعد الكتابة من الصفر".',
+      dialogue_opener: '[تعليق على الـ PR]: "هذا الـ approach كله خاطئ. ما كان لازم تبدأ بدون مراجعة التصميم معي. أعد الكتابة."',
+      psychological_context: 'Growth Mindset (Carol Dweck): الشخص بـ Fixed Mindset يفسّر النقد كهجوم على ذكائه. الشخص بـ Growth Mindset يفسّره كمعلومات تُحسّن مستواه. الـ PR rejection ليس رفضاً لك كشخص — هو feedback على منتج محدد.',
+      choices: [
+        { text: 'أحذف الـ PR وأعيد الكتابة بصمت بدون نقاش.', score: 20, feedback: 'استسلمت بدون فهم. ستعيد الكتابة وربما تُرفض مرة ثانية لأنك لم تسأل "لماذا بالتحديد؟"', consequence: '(بعد يومين: PR ثاني مرفوض — "لا زلت لم تفهم المطلوب")' },
+        { text: 'أردّ بدفاعية: "الكود يعمل ومرّ الـ tests. ما الداعي لإعادة الكتابة؟"', score: 10, feedback: 'الدفاعية تُغلق باب التعلّم وتُصعّب العلاقة مع الـ Senior. "يعمل" ليس معيار الجودة الوحيد.', consequence: 'ردّ حاد: "Code that works is not necessarily good code. Let\'s discuss."' },
+        { text: 'أشكره على الوقت، أسأل عن النقاط الأهم أولاً: "شكراً على المراجعة. أفهم إن الـ approach يحتاج تغيير. ممكن نتفق على الـ design pattern المطلوب قبل ما أبدأ من جديد؟ أبغى أتأكد نكون على نفس الصفحة."', score: 100, feedback: 'Growth Mindset في أفضل صوره: شكر حقيقي + قبول الـ feedback + طلب توضيح عملي + استباق المشكلة القادمة. يُحوّل العلاقة من "ناقد ومُنتَقَد" إلى "مُعلّم ومتعلّم".', consequence: '"عظيم. خذ 30 دقيقة معي غداً أشرح لك الـ pattern اللي أريده."' },
+        { text: 'أتجاهل التعليقات وأسأل مطوراً آخر عن رأيه.', score: 15, feedback: 'تجاوزت الـ reviewer — هذا يُدمّر الثقة ويُنشئ سياسة "أروح لمن يوافقني".', consequence: 'الـ Senior يعلم ويقول: "الـ PR بمراجعتي أنا. راجع تعليقاتي أولاً."' }
+      ],
+      expert_move: 'أقبل الـ feedback كمعلومات لا كحكم شخصي. أطلب جلسة design review قبل إعادة الكتابة. أوثّق ما تعلّمته لأتجنّب نفس المشكلة مستقبلاً.',
+      principle: 'مبدأ Growth Mindset (Dweck): "أنا أخطأت" ≠ "أنا فاشل". الـ PR المرفوض هو أقوى أداة تعلّم — لكن فقط إذا سألت "لماذا" بدل أن تشعر بالإهانة.'
+    },
+    dev_03: {
+      id: 'dev_03', category: 'developer', title: 'مدير يطلب ميزة مستحيلة بنصف الوقت', difficulty: 4,
+      setup: 'اجتماع Sprint Planning. مدير المنتج يطلب ميزة تحتاج 3 أسابيع (حسب تقديرك) لكنه يقول "الـ deadline أسبوع ونصف. العميل ينتظر."',
+      dialogue_opener: 'هذه الميزة لازم تكون جاهزة خلال أسبوع ونصف. العميل وقّع العقد بناءً على هذا الموعد. ما عندنا خيار.',
+      psychological_context: 'Planning Fallacy (Kahneman 2011): المدير يقع في مغالطة التخطيط — يعتقد أن "أسبوع ونصف" واقعي لأنه يريد ذلك. التقدير العاطفي يتغلب على التقدير التقني. مهمتك: لا تقل "مستحيل" (يُغلق الحوار) — بل "ممكن بهذه الشروط" (يفتح التفاوض).',
+      choices: [
+        { text: 'حسناً، سأحاول. (ثم تعمل 16 ساعة يومياً)', score: 5, feedback: 'قبلت deadline غير واقعي. ستُنتج كوداً سيئاً أو ستفشل في التسليم — وفي الحالتين ستُلام أنت.', consequence: '(بعد 10 أيام: الميزة 60% فقط، كود مليء بالـ bugs، burnout حقيقي)' },
+        { text: 'هذا مستحيل. أحتاج 3 أسابيع كاملة.', score: 25, feedback: '"مستحيل" تُغلق الحوار. المدير يسمع "أنت لا تتعاون" حتى لو كنت محقاً تقنياً.', consequence: '"ما عندنا 3 أسابيع. دبّر نفسك."' },
+        { text: 'أفهم إن العميل ينتظر. خلّيني أكون صريح: الميزة الكاملة تحتاج 3 أسابيع. لكن خلال أسبوع ونصف أقدر أسلّم الـ MVP — الـ 80% اللي تهم العميل فعلاً. الباقي نضيفه في Sprint التالي. كذا العميل يبدأ يستخدم والجودة ما تتأثر. يناسبك؟', score: 100, feedback: 'أربع حركات: اعتراف بالضغط، شفافية عن الواقع التقني، حل وسط عملي (MVP)، سؤال يُشرك المدير في القرار. هذا هو التفاوض الهندسي الاحترافي.', consequence: '"الـ MVP فكرة معقولة. وش اللي يدخل فيها وش اللي يتأخر؟"' },
+        { text: 'خلّيني أضيف مطور ثاني على المهمة ونخلّص بأسبوع ونصف.', score: 40, feedback: 'Brooks\' Law: "Adding manpower to a late project makes it later." مطور جديد يحتاج أيام لفهم السياق.', consequence: '(المطور الجديد يحتاج 4 أيام ليفهم الكود — والوقت الفعلي لم يتغير)' }
+      ],
+      expert_move: 'تقنية MVP Negotiation: لا تقل "لا" — قل "نعم لهذا الجزء بهذا الوقت". قسّم الميزة إلى ما يُشبع العميل الآن وما يُكمّلها لاحقاً.',
+      principle: 'مبدأ Planning Fallacy (Kahneman): البشر يُقدّرون المهام بناءً على "أفضل سيناريو". المبرمج المحترف يُفاوض بالبيانات لا بالعاطفة — ويُقدّم بدائل بدل "مستحيل".'
+    },
+    dev_04: {
+      id: 'dev_04', category: 'developer', title: 'متلازمة المحتال في اجتماع مهندسين', difficulty: 3,
+      setup: 'اجتماع تقني مع 5 مهندسين أقدم منك. يناقشون architecture decision لا تفهم كل تفاصيلها. أحدهم يسألك: "ما رأيك في هذا الـ approach؟"',
+      dialogue_opener: 'أنت شغّال على الـ service المتأثرة — ما رأيك؟ هل هذا الـ design يناسب الـ scale اللي عندك؟',
+      psychological_context: 'Impostor Syndrome (Clance & Imes 1978): 58% من المبرمجين يعانون منه. الشعور بأنك "لا تستحق مكانك" يجعلك إما تصمت (وتبدو غير مهتم) أو تتظاهر بالفهم (وتُكتشف لاحقاً). الحل الثالث: الصدق الذكي.',
+      choices: [
+        { text: 'أيوه، يبدو ممتاز. أنا موافق. (بدون فهم حقيقي)', score: 5, feedback: 'وافقت على شيء لا تفهمه. لو ظهرت مشاكل لاحقاً في الـ service تبعك — ستُسأل "لماذا وافقت؟"', consequence: '(بعد شهر: الـ design لا يتحمل الـ load على service-ك. "لماذا لم تنبّهنا؟")' },
+        { text: '(تصمت وتبتسم ابتسامة مبهمة)', score: 10, feedback: 'الصمت يُفسَّر إما كعدم اهتمام أو عدم كفاءة. كلاهما يُضعف موقفك.', consequence: 'بعد الاجتماع يسألك زميل: "ليش ما تكلمت؟ رأيك كان مهم."' },
+        { text: 'صراحة، ما عندي صورة كاملة عن الـ trade-offs في هذا الـ approach. ممكن توضّح لي كيف يتعامل مع [نقطة محددة تخصّ service-ك]؟ لأن عندي concern محدد عن الـ throughput تحت load عالي.', score: 100, feedback: 'ثلاث حركات: صدق بدون ضعف ("ما عندي صورة كاملة" ≠ "أنا ما أفهم")، سؤال ذكي يُظهر تفكيراً (concern محدد)، ربط بمنطقة خبرتك (الـ service تبعك). يُثبت أنك تفكر لا تُقلّد.', consequence: '"سؤال ممتاز. فعلاً الـ throughput نقطة لازم ندرسها أكثر. خلّينا نضيف benchmark."' },
+        { text: 'أنا ما أفهم كثير في الـ architecture. أنتم قرروا وأنا أنفّذ.', score: 15, feedback: 'تنازلت عن دورك كمهندس. أنت لست مُنفّذ فقط — أنت صاحب قرار في منطقتك.', consequence: '"لا — رأيك مهم لأن الـ service تبعك. لازم تشارك."' }
+      ],
+      expert_move: 'الصدق الذكي: "ما عندي صورة كاملة + عندي concern محدد + ممكن توضّح؟" — هذا يُظهرك كمهندس يُفكّر لا كشخص يتظاهر. السؤال الذكي أقوى من الإجابة المزيّفة.',
+      principle: 'مبدأ Impostor Syndrome: الشعور بأنك محتال لا يعني أنك محتال فعلاً. 58% من المبرمجين يشعرون بنفس الشيء. الحل ليس التظاهر — بل السؤال الذكي الذي يُثبت أنك تُفكّر.'
+    },
+    dev_05: {
+      id: 'dev_05', category: 'developer', title: 'زميل ينسب كودك لنفسه أمام المدير', difficulty: 4,
+      setup: 'في اجتماع Sprint Review، زميلك يعرض feature أنت كتبت 80% من كودها. يقول "أنا" و"سوّيت" بدون أي إشارة لمساهمتك. المدير يمدحه.',
+      dialogue_opener: '[الزميل في الاجتماع]: "أنا خلّصت هذه الميزة بالكامل خلال الأسبوع الماضي. كان التحدي في الـ API integration وحلّيته بـ..."',
+      psychological_context: 'DESC Model (Describe, Express, Specify, Consequences): أسلوب التواصل الحازم بدون عدوانية. المواجهة أمام الجميع = حرب. الصمت = تكرار. الحل: مواجهة خاصة مُهيكلة.',
+      choices: [
+        { text: '(تقاطعه في الاجتماع): "لحظة، هذا الكود أنا اللي كتبته!"', score: 15, feedback: 'مواجهة علنية تُحرجه وتُحرجك وتجعل المدير في موقف صعب. حتى لو محق — تبدو غير مهني.', consequence: 'صمت محرج. الزميل ينكر. المدير يقول "نتكلم بعدين".' },
+        { text: '(تصمت وتترك الموضوع يمرّ)', score: 5, feedback: 'صمتك = موافقة ضمنية. سيتكرر كل sprint. وسمعتك ستتآكل تدريجياً.', consequence: '(يتكرر في الـ sprint التالي — والمدير يعتقد أن زميلك هو الأقوى تقنياً)' },
+        { text: 'بعد الاجتماع، تتكلم معه على انفراد: "أنا لاحظت في العرض إنك ما ذكرت إني شاركت في الميزة. أنا ما أبغى أسوّي مشكلة — بس محتاج إن مساهمتي تكون واضحة. في الـ sprint الجاي، نعرض سوا أو نوضّح مين سوّى وش. يناسبك؟"', score: 100, feedback: 'DESC مثالي: Describe (ما ذكرت مساهمتي)، Express (محتاج تكون واضحة)، Specify (نعرض سوا)، Consequence (ضمنية: وإلا سأتصرف). خاص، محترم، وواضح.', consequence: '"والله صح — ما انتبهت. الـ sprint الجاي نعرض سوا."' },
+        { text: 'أرسل إيميل للمدير أوضّح فيه مساهمتي.', score: 45, feedback: 'يحمي حقك لكنه يتجاوز الزميل بدون مواجهة مباشرة — قد يُفسَّر كـ"طعن بالظهر".', consequence: 'المدير يسأل الزميل — والعلاقة تتوتر بينكم.' }
+      ],
+      expert_move: 'DESC Model: واجه الشخص مباشرة على انفراد، صف السلوك (لا الشخصية)، عبّر عن حاجتك، حدّد الحل المطلوب. هذا يحفظ العلاقة ويحمي حقك.',
+      principle: 'مبدأ Assertive Communication (DESC): الحزم ≠ العدوانية. المبرمج المحترف يحمي مساهماته بمواجهة خاصة مُهيكلة — لا بصمت يُضعفه ولا بمشهد عام يُحرجه.'
+    },
+    dev_06: {
+      id: 'dev_06', category: 'developer', title: 'Bug عالق 6 ساعات وأنت مُصر', difficulty: 3,
+      setup: 'تعمل على bug منذ 6 ساعات. جرّبت كل شيء تعرفه. لم تطلب مساعدة لأنك "لازم تحلّه بنفسك". بدأت تشعر بالإحباط والتعب.',
+      dialogue_opener: '[أنت مع نفسك]: "لازم أحلّه... ما أقدر أطلب مساعدة الحين. بيفكرون إني ما أعرف. بعد ساعة أكيد بلاقيه..."',
+      psychological_context: 'Sunk Cost Fallacy: استثمرت 6 ساعات فتشعر أن "التخلي" يعني إهدار كل هذا الوقت. الحقيقة: كل دقيقة إضافية بعد نقطة معينة هي خسارة جديدة لا حماية للاستثمار القديم.',
+      choices: [
+        { text: 'أكمل — أكيد الحل قريب. ساعة إضافية بس.', score: 10, feedback: 'هذا بالضبط ما قلته قبل 3 ساعات. الـ Sunk Cost يخدعك. كل ساعة تمر تزيد الإحباط وتُقلّل الإبداع.', consequence: '(بعد ساعتين إضافيتين: لا حل. إحباط كامل. 8 ساعات ضائعة.)' },
+        { text: 'أترك الـ bug بالكامل وأشتغل على شيء ثاني.', score: 30, feedback: 'راحة ذهنية جيدة لكنها لا تحل المشكلة. غداً ستعود لنفس النقطة.', consequence: '(غداً: نفس المشكلة ونفس الإحباط)' },
+        { text: 'أتوقف 15 دقيقة (أمشي أو أشرب قهوة). ثم أكتب المشكلة بالتفصيل كأني أشرحها لشخص آخر. إذا لم أجد الحل خلال 30 دقيقة — أطلب مساعدة بدون خجل.', score: 100, feedback: 'ثلاث تقنيات مُثبتة: 1) الاستراحة الذهنية (Incubation Effect) 2) Rubber Duck Debugging (الشرح لشخص وهمي) 3) قاعدة الـ Timeboxing (30 دقيقة ثم مساعدة). أذكى المهندسين يطلبون المساعدة بعد ساعتين لا ثماني.', consequence: '(بعد كتابة المشكلة: "لحظة... لم أتحقق من هذا الـ edge case!" — تجد الحل خلال 10 دقائق.)' },
+        { text: 'أسأل ChatGPT أو Stack Overflow مباشرة.', score: 50, feedback: 'أدوات مفيدة لكن بدون فهم المشكلة بعمق ستحصل على إجابات لا تنطبق على حالتك. الشرح للنفس أولاً يُحدد السؤال الصحيح.', consequence: '(تحصل على 5 إجابات مختلفة — لا تعرف أيها ينطبق على حالتك)' }
+      ],
+      expert_move: 'قاعدة 2-Hour Rule: إذا لم تتقدم خلال ساعتين، اطلب مساعدة. ليس ضعفاً — بل ذكاء. أذكى مهندسي Google يطلبون المساعدة بعد 45 دقيقة.',
+      principle: 'مبدأ Sunk Cost Fallacy: "استثمرت 6 ساعات" لا يعني أن الساعة السابعة ستُنتج حلاً. التكلفة الغارقة غارقة — لا يمكن استرجاعها. القرار الذكي يعتمد على المستقبل لا الماضي.'
+    },
+    dev_07: {
+      id: 'dev_07', category: 'developer', title: 'مقاطعات مستمرة تمنعك من التركيز', difficulty: 3,
+      setup: 'أنت في منتصف مهمة برمجية معقدة تتطلب تركيزاً عميقاً. خلال ساعة واحدة: 3 رسائل Slack، زميل يسأل "سؤال سريع"، واجتماع غير مُخطط.',
+      dialogue_opener: '[رسالة Slack]: "سؤال سريع — كيف أستدعي الـ API اللي سوّيتها؟" [زميل يقف بجانبك]: "عندك دقيقة؟"',
+      psychological_context: 'Cognitive Switching Cost (Gloria Mark, UC Irvine): كل مقاطعة تحتاج 23 دقيقة في المتوسط لاستعادة التركيز الكامل. 3 مقاطعات = ساعة ونصف ضائعة فعلياً. Deep Work (Cal Newport): العمل العميق يتطلب فترات 90 دقيقة بدون مقاطعة.',
+      choices: [
+        { text: 'أرد على كل شي فوراً — ما أبغى أكون "ذاك الشخص" اللي ما يردّ.', score: 10, feedback: 'ستقضي يومك في خدمة الآخرين ولن تُنجز مهمتك. ثم ستُحاسب على عدم الإنجاز — لا على ردّك السريع.', consequence: '(نهاية اليوم: 0% تقدم في مهمتك الأساسية. Sprint fail.)' },
+        { text: 'أتجاهل كل الرسائل ولا أرد حتى أخلّص.', score: 25, feedback: 'حماية وقتك جيدة لكن التجاهل الكامل يُضر العلاقات ويُوقف عمل الآخرين. يحتاج توازناً.', consequence: '(زميل يشتكي: "ما يرد أبداً!" — سمعتك تتأثر)' },
+        { text: 'أضع status واضح: "Deep Work حتى الساعة X — أرد بعدها." أكتمل المقاطع الحالي، أسجّل أين وصلت، ثم أخصص 15 دقيقة للرد على كل الرسائل دفعة واحدة. الأسئلة المتكررة أوثّقها في Wiki.', score: 100, feedback: 'أربع تقنيات: 1) حدود واضحة ومُعلنة (status) 2) Batching — الرد دفعة واحدة 3) حفظ السياق (أسجّل أين وصلت) 4) توثيق لمنع التكرار. يحمي تركيزك ويحترم الآخرين.', consequence: '(3 ساعات Deep Work + 15 دقيقة ردود = يوم منتج جداً)' },
+        { text: 'أقول لزميلي "مشغول" وأكمل بدون شرح.', score: 35, feedback: '"مشغول" بدون بديل يبدو وقحاً. أفضل: "معي 30 دقيقة وأجيك" — يحفظ العلاقة ويحمي وقتك.', consequence: 'الزميل يتردد يسألك مرة ثانية حتى في أمور مهمة.' }
+      ],
+      expert_move: 'نظام Cal Newport: حدّد "ساعات العمق" مسبقاً + أعلنها للفريق + Batch الردود في فترات محددة + وثّق الأسئلة المتكررة. هذا يرفع إنتاجيتك 300% بدون إضرار بالفريق.',
+      principle: 'مبدأ Deep Work (Cal Newport): كل مقاطعة = 23 دقيقة ضائعة. المبرمج المحترف يحمي وقت تركيزه بحدود واضحة وبدائل مُعلنة — لا بتجاهل ولا بانهيار.'
+    },
   };
 
   // ── Engine State ── with localStorage persistence
@@ -7652,7 +8148,7 @@
     const allScen = Object.values(SCENARIOS);
     const filtered = simState.filterCat === 'all' ? allScen : allScen.filter(s => s.category === simState.filterCat);
 
-    const catLabels = { callcenter:'📞 كول سنتر', sales:'💼 مبيعات', social:'📱 سوشيال ميديا', negotiation:'💼 تفاوض وظيفي', account:'🤝 أكونت منجر', repair:'🔧 مركز الصيانة' };
+    const catLabels = { callcenter:'📞 كول سنتر', sales:'💼 مبيعات', social:'📱 سوشيال ميديا', negotiation:'💼 تفاوض وظيفي', account:'🤝 أكونت منجر', repair:'🔧 مركز الصيانة', accountant:'🧮 محاسب', developer:'💻 مبرمج' };
     const diffLabels = [,'سهل','متوسط','متوسط','صعب','خبير'];
     const diffColors = [,'green','yellow','yellow','red','red'];
 
@@ -7727,7 +8223,7 @@
     const sc  = SCENARIOS[sid];
     if (!sc) return;
 
-    const catLabels = { callcenter:'📞 كول سنتر', sales:'💼 مبيعات', social:'📱 سوشيال ميديا', negotiation:'💼 تفاوض وظيفي', account:'🤝 أكونت منجر', repair:'🔧 مركز الصيانة' };
+    const catLabels = { callcenter:'📞 كول سنتر', sales:'💼 مبيعات', social:'📱 سوشيال ميديا', negotiation:'💼 تفاوض وظيفي', account:'🤝 أكونت منجر', repair:'🔧 مركز الصيانة', accountant:'🧮 محاسب', developer:'💻 مبرمج' };
     const diffLabels = [,'سهل','متوسط','متوسط','صعب','خبير'];
     const diffColors = [,'green','yellow','yellow','red','red'];
 
