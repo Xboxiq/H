@@ -2503,6 +2503,16 @@
         <span class="nav-badge" style="background:linear-gradient(135deg,#8B5CF6,#0EA5E9);color:#fff;">7</span>
       </div>
 
+      <div class="nav-item" data-page="newprofile">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M12 14l-2 4h4l-2-4"/>
+        </svg>
+        <span class="nav-label">بروفايل الموظف</span>
+        <span class="nav-badge" style="background:linear-gradient(135deg,#22C55E,#0EA5E9);color:#fff;">جديد</span>
+      </div>
+
       <span class="nav-section-label">الإدارة</span>
 
       <div class="nav-item" data-page="none">
@@ -6168,6 +6178,194 @@
       </div>
 
     </section><!-- /page-psych -->
+    <!-- ===========================
+         PAGE 7 — بروفايل الموظف الجديد
+    =========================== -->
+    <section class="page" id="page-newprofile">
+
+      <div class="page-header">
+        <h1>بروفايل الموظف الجديد 🧬</h1>
+        <p>تقييم نفسي ذكي يربط شخصيتك بالوظيفة المثالية — مبني على نموذج DISC وعلم النفس التنظيمي</p>
+      </div>
+
+      <!-- ===== INTRO CARD ===== -->
+      <div class="card" style="margin-bottom:24px; border-color:var(--border-hover); position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-40px; left:-40px; width:160px; height:160px; background:radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events:none;"></div>
+        <div style="display:flex; align-items:center; gap:16px; position:relative; z-index:1;">
+          <div style="width:56px; height:56px; border-radius:var(--radius-md); background:linear-gradient(135deg, rgba(102,252,241,0.2), rgba(14,165,233,0.15)); border:1px solid var(--border-hover); display:flex; align-items:center; justify-content:center; font-size:28px; flex-shrink:0;">🧠</div>
+          <div>
+            <div style="font-size:16px; font-weight:800; color:var(--text); margin-bottom:4px;">كيف يعمل التقييم؟</div>
+            <div style="font-size:12.5px; color:var(--text-muted); line-height:1.7;">12 سؤال سريع مبني على نموذج DISC (Dominance, Influence, Steadiness, Conscientiousness) — يحدد نمطك السلوكي ويربطه بالوظائف التي تناسبك بشكل علمي. النتائج فورية مع خارطة تطوير مخصصة.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;">
+          <div class="tag accent">⏱️ 3–5 دقائق</div>
+          <div class="tag blue">📊 12 سؤال</div>
+          <div class="tag green">🎯 نتيجة فورية</div>
+          <div class="tag yellow">🗺️ خارطة تطوير</div>
+        </div>
+      </div>
+
+      <!-- ===== ASSESSMENT ENGINE ===== -->
+      <div id="profile-assessment-wrap" class="card" style="padding:28px;">
+        <div id="profile-quiz-content">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- ===== RESULTS (hidden until completion) ===== -->
+      <div id="profile-results-wrap" style="display:none; margin-top:24px;">
+
+        <!-- Result Header Card -->
+        <div class="card" style="margin-bottom:20px; text-align:center; padding:32px;">
+          <div style="font-size:48px; margin-bottom:12px;" id="profile-result-emoji">🎯</div>
+          <div style="font-size:22px; font-weight:900; color:var(--text); margin-bottom:6px;" id="profile-result-type"></div>
+          <div style="font-size:14px; color:var(--accent); font-weight:700; margin-bottom:14px;" id="profile-result-subtitle"></div>
+          <div style="font-size:13px; color:var(--text-muted); line-height:1.8; max-width:600px; margin:0 auto;" id="profile-result-desc"></div>
+        </div>
+
+        <!-- DISC Scores Visual -->
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-title">مؤشرات DISC الخاصة بك</div>
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;" id="profile-disc-bars"></div>
+        </div>
+
+        <!-- Matched Jobs -->
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-title">الوظائف المناسبة لنمطك</div>
+          <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:14px;" id="profile-matched-jobs"></div>
+        </div>
+
+        <!-- Development Roadmap -->
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-title">خارطة التطوير المخصصة</div>
+          <div id="profile-roadmap" style="margin-top:14px;"></div>
+        </div>
+
+        <!-- Psychology Behind -->
+        <div class="card" style="margin-bottom:20px;">
+          <div class="psych-section-header" style="margin-bottom:0; padding-bottom:0; border-bottom:none;">
+            <div class="psych-section-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
+            </div>
+            <div>
+              <div class="psych-section-title">العلم خلف النتيجة</div>
+              <div class="psych-section-sub">لماذا هذه الوظائف تناسبك أكثر من غيرها — المرجع الأكاديمي</div>
+            </div>
+          </div>
+          <div id="profile-psych-explanation" style="margin-top:18px;"></div>
+        </div>
+
+        <!-- Retry Button -->
+        <div style="text-align:center; margin-top:16px;">
+          <button class="btn btn-primary" onclick="resetProfileAssessment()">🔄 إعادة التقييم</button>
+          <button class="btn btn-ghost" style="margin-right:10px;" onclick="navigatePage('lab')">🧪 جرّب المختبر</button>
+        </div>
+
+      </div>
+
+    </section><!-- /page-newprofile -->
+    <style>
+    /* ============================================================
+       PAGE 7 — PROFILE ASSESSMENT STYLES
+    ============================================================ */
+    .profile-q-counter {
+      font-size:10px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase;
+      color:var(--accent); margin-bottom:10px;
+    }
+    .profile-question-text {
+      font-size:16px; font-weight:700; color:var(--text); line-height:1.6; margin-bottom:20px;
+    }
+    .profile-options { display:flex; flex-direction:column; gap:10px; }
+    .profile-option {
+      display:flex; align-items:center; gap:14px;
+      padding:14px 18px; border:1px solid var(--border); border-radius:var(--radius-md);
+      background:var(--surface-2); cursor:pointer; transition:var(--transition);
+      user-select:none;
+    }
+    .profile-option:hover { border-color:var(--border-hover); background:var(--surface-3); transform:translateX(-3px); }
+    .profile-option.selected { border-color:var(--accent); background:var(--accent-dim); box-shadow:var(--shadow-accent); }
+    .profile-option-letter {
+      width:30px; height:30px; border-radius:50%;
+      background:var(--surface-3); border:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      font-size:12px; font-weight:800; color:var(--text-muted); flex-shrink:0;
+      transition:var(--transition);
+    }
+    .profile-option.selected .profile-option-letter {
+      background:var(--accent); color:var(--bg); border-color:var(--accent);
+    }
+    .profile-option-text { font-size:13.5px; color:var(--text); line-height:1.5; }
+    .profile-progress-wrap {
+      display:flex; align-items:center; gap:12px; margin-bottom:22px;
+    }
+    .profile-progress-bar {
+      flex:1; height:6px; background:var(--surface-3); border-radius:99px; overflow:hidden;
+    }
+    .profile-progress-fill {
+      height:100%; background:linear-gradient(90deg, var(--accent), #0EA5E9);
+      border-radius:99px; transition:width 0.5s ease;
+    }
+    .profile-progress-text { font-size:11px; color:var(--text-muted); font-weight:600; white-space:nowrap; }
+    .profile-nav-btns { display:flex; justify-content:space-between; margin-top:22px; }
+
+    /* DISC bar style */
+    .disc-bar-item {
+      background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md);
+      padding:16px; text-align:center; transition:var(--transition);
+    }
+    .disc-bar-item:hover { border-color:var(--border-hover); transform:translateY(-2px); }
+    .disc-bar-letter { font-size:28px; font-weight:900; line-height:1; margin-bottom:6px; }
+    .disc-bar-label { font-size:11px; color:var(--text-muted); margin-bottom:10px; font-weight:600; }
+    .disc-bar-track { height:8px; background:var(--surface-3); border-radius:99px; overflow:hidden; margin-bottom:6px; }
+    .disc-bar-fill { height:100%; border-radius:99px; transition:width 1.2s ease; }
+    .disc-bar-value { font-size:13px; font-weight:800; }
+
+    /* Matched job card */
+    .matched-job-card {
+      background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md);
+      padding:18px; transition:var(--transition); position:relative; overflow:hidden;
+      cursor:pointer;
+    }
+    .matched-job-card:hover { border-color:var(--border-hover); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+    .matched-job-card::before {
+      content:''; position:absolute; top:0; right:0; left:0; height:3px;
+      background:linear-gradient(90deg, var(--accent), #0EA5E9);
+      transform:scaleX(0); transform-origin:right; transition:transform 0.3s ease;
+    }
+    .matched-job-card:hover::before { transform:scaleX(1); }
+    .matched-job-icon { font-size:24px; margin-bottom:10px; }
+    .matched-job-title { font-size:14px; font-weight:800; color:var(--text); margin-bottom:4px; }
+    .matched-job-match { font-size:11px; font-weight:700; color:var(--accent); margin-bottom:8px; }
+    .matched-job-desc { font-size:12px; color:var(--text-muted); line-height:1.65; }
+    .matched-job-nav-btn {
+      display:inline-flex; align-items:center; gap:5px; margin-top:10px;
+      font-size:11px; font-weight:700; color:var(--accent); cursor:pointer;
+      background:none; border:none; font-family:var(--font); padding:0;
+    }
+    .matched-job-nav-btn:hover { opacity:0.75; }
+
+    /* Roadmap */
+    .roadmap-phase {
+      display:flex; align-items:flex-start; gap:16px; padding:16px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .roadmap-phase:last-child { border-bottom:none; }
+    .roadmap-num {
+      width:32px; height:32px; border-radius:50%;
+      background:var(--accent-dim); border:1px solid var(--border-hover);
+      display:flex; align-items:center; justify-content:center;
+      font-size:12px; font-weight:900; color:var(--accent); flex-shrink:0;
+    }
+    .roadmap-content { flex:1; }
+    .roadmap-title { font-size:14px; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .roadmap-desc { font-size:12px; color:var(--text-muted); line-height:1.65; }
+    .roadmap-duration {
+      font-size:10px; font-weight:700; padding:3px 9px; border-radius:99px;
+      background:var(--surface-3); border:1px solid var(--border); color:var(--text-muted);
+      margin-top:8px; display:inline-block;
+    }
+    </style>
 
     <style>
     /* ── Psych page role-tab scripts ── */
@@ -6391,6 +6589,15 @@
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.84A2.5 2.5 0 0 1 9.5 2"/>
           <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.84A2.5 2.5 0 0 0 14.5 2"/>
+        </svg>`
+      },
+      newprofile: {
+        title: 'بروفايل الموظف الجديد',
+        breadcrumb: 'الرئيسية / بروفايل الموظف / التقييم النفسي',
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M12 14l-2 4h4l-2-4"/>
         </svg>`
       }
     };
@@ -8301,6 +8508,374 @@
       });
     });
   });
+/* ============================================================
+   PAGE 7 — PROFILE ASSESSMENT ENGINE
+============================================================ */
+
+const PROFILE_QUESTIONS = [
+  {
+    id: 1,
+    text: 'عندما تواجه مشكلة جديدة في العمل، ما أول شي تسويه؟',
+    options: [
+      { text: 'أبادر فوراً باتخاذ قرار وأتحرك بسرعة', scores: { D: 4, I: 1, S: 0, C: 1 } },
+      { text: 'أتحدث مع الفريق وأستشير قبل أي خطوة', scores: { D: 0, I: 4, S: 2, C: 0 } },
+      { text: 'أبحث عن خطوات مُجرّبة ومنهجية واضحة', scores: { D: 0, I: 0, S: 2, C: 4 } },
+      { text: 'أصبر وأراقب الموقف قبل ما أتدخل', scores: { D: 0, I: 1, S: 4, C: 1 } }
+    ]
+  },
+  {
+    id: 2,
+    text: 'وش الشي اللي يحفزك أكثر في بيئة العمل؟',
+    options: [
+      { text: 'تحقيق أهداف ونتائج ملموسة', scores: { D: 4, I: 1, S: 0, C: 1 } },
+      { text: 'التفاعل مع الناس وبناء علاقات', scores: { D: 0, I: 4, S: 2, C: 0 } },
+      { text: 'بيئة مستقرة وروتين واضح', scores: { D: 0, I: 0, S: 4, C: 1 } },
+      { text: 'الدقة والإتقان في كل تفصيل', scores: { D: 1, I: 0, S: 1, C: 4 } }
+    ]
+  },
+  {
+    id: 3,
+    text: 'لو عميل رفع صوته عليك، وش ردة فعلك الطبيعية؟',
+    options: [
+      { text: 'أتحكم بالموقف بثقة وأوجه المحادثة', scores: { D: 4, I: 1, S: 0, C: 1 } },
+      { text: 'أتعاطف معه وأحاول أهدّئه بالكلام', scores: { D: 0, I: 4, S: 2, C: 0 } },
+      { text: 'أصبر وأسمع حتى يفرغ ثم أتصرف', scores: { D: 0, I: 1, S: 4, C: 1 } },
+      { text: 'أحلل سبب غضبه وأقدم حل منطقي', scores: { D: 1, I: 0, S: 1, C: 4 } }
+    ]
+  },
+  {
+    id: 4,
+    text: 'كيف تفضل يكون يومك في العمل؟',
+    options: [
+      { text: 'مليان تحديات جديدة وقرارات سريعة', scores: { D: 4, I: 2, S: 0, C: 0 } },
+      { text: 'اجتماعات وتفاعل اجتماعي مستمر', scores: { D: 0, I: 4, S: 1, C: 0 } },
+      { text: 'منظم ومُخطط مسبقاً بدون مفاجآت', scores: { D: 0, I: 0, S: 4, C: 2 } },
+      { text: 'تركيز عميق على مهمة واحدة بإتقان', scores: { D: 1, I: 0, S: 1, C: 4 } }
+    ]
+  },
+  {
+    id: 5,
+    text: 'في فريق عمل جديد، وش دورك اللي تلقائياً تأخذه؟',
+    options: [
+      { text: 'القائد — أوجه الفريق وأتخذ القرارات', scores: { D: 4, I: 2, S: 0, C: 0 } },
+      { text: 'المُحفّز — أشجع الجميع وأنشر الحماس', scores: { D: 0, I: 4, S: 1, C: 0 } },
+      { text: 'الداعم — أساعد بصمت وأنفذ المطلوب بإتقان', scores: { D: 0, I: 0, S: 4, C: 2 } },
+      { text: 'المحلل — أراقب التفاصيل وأنبه للأخطاء', scores: { D: 1, I: 0, S: 1, C: 4 } }
+    ]
+  },
+  {
+    id: 6,
+    text: 'وش أكثر شي يزعجك في بيئة العمل؟',
+    options: [
+      { text: 'البطء في اتخاذ القرارات والتردد', scores: { D: 4, I: 1, S: 0, C: 1 } },
+      { text: 'العزلة وعدم التواصل مع الآخرين', scores: { D: 0, I: 4, S: 1, C: 0 } },
+      { text: 'التغييرات المفاجئة والفوضى', scores: { D: 0, I: 0, S: 4, C: 2 } },
+      { text: 'العمل السطحي وقلة الجودة', scores: { D: 1, I: 0, S: 0, C: 4 } }
+    ]
+  },
+  {
+    id: 7,
+    text: 'لو طُلب منك تقديم عرض أمام 20 شخص، وش شعورك؟',
+    options: [
+      { text: 'ممتاز! أحب أكون في المقدمة', scores: { D: 3, I: 4, S: 0, C: 0 } },
+      { text: 'حماس وتوتر بسيط بس أقدر', scores: { D: 2, I: 3, S: 1, C: 1 } },
+      { text: 'أفضل أشتغل خلف الكواليس صراحة', scores: { D: 0, I: 0, S: 4, C: 2 } },
+      { text: 'أحتاج أحضّر كل شي بدقة قبلها بأسبوع', scores: { D: 0, I: 0, S: 1, C: 4 } }
+    ]
+  },
+  {
+    id: 8,
+    text: 'كيف تتعامل مع الخلاف مع زميل؟',
+    options: [
+      { text: 'أواجه مباشرة وأحل الموضوع فوراً', scores: { D: 4, I: 1, S: 0, C: 1 } },
+      { text: 'أحاول أفهم وجهة نظره وأوصل لحل يرضي الطرفين', scores: { D: 0, I: 4, S: 2, C: 0 } },
+      { text: 'أتجنب التصعيد وأنتظر يهدأ الموضوع', scores: { D: 0, I: 0, S: 4, C: 1 } },
+      { text: 'أرجع للسياسات والقواعد لتحديد الصواب', scores: { D: 1, I: 0, S: 0, C: 4 } }
+    ]
+  },
+  {
+    id: 9,
+    text: 'لو عندك وقت فراغ في العمل، وش تسوي؟',
+    options: [
+      { text: 'أبحث عن مشروع جديد أو مهمة إضافية', scores: { D: 4, I: 1, S: 0, C: 2 } },
+      { text: 'أتحدث مع الزملاء وأبني علاقات', scores: { D: 0, I: 4, S: 2, C: 0 } },
+      { text: 'أرتب مكتبي وأنظم ملفاتي', scores: { D: 0, I: 0, S: 3, C: 3 } },
+      { text: 'أراجع شغلي السابق وأحسّنه', scores: { D: 0, I: 0, S: 1, C: 4 } }
+    ]
+  },
+  {
+    id: 10,
+    text: 'وش أهم شي تبحث عنه في وظيفة جديدة؟',
+    options: [
+      { text: 'فرص النمو والترقي السريع', scores: { D: 4, I: 2, S: 0, C: 0 } },
+      { text: 'فريق عمل ودود وبيئة اجتماعية حلوة', scores: { D: 0, I: 4, S: 2, C: 0 } },
+      { text: 'استقرار وأمان وظيفي طويل المدى', scores: { D: 0, I: 0, S: 4, C: 2 } },
+      { text: 'تحديات تقنية ومهام تحتاج دقة عالية', scores: { D: 1, I: 0, S: 0, C: 4 } }
+    ]
+  },
+  {
+    id: 11,
+    text: 'لو أخطأت في مهمة أمام مديرك، وش تسوي؟',
+    options: [
+      { text: 'أعترف فوراً وأقدم الحل البديل', scores: { D: 4, I: 1, S: 0, C: 2 } },
+      { text: 'أتحدث معه بهدوء وأطلب فرصة ثانية بابتسامة', scores: { D: 0, I: 4, S: 1, C: 0 } },
+      { text: 'أعتذر بصدق وأتعهد أنه ما يتكرر', scores: { D: 0, I: 1, S: 4, C: 1 } },
+      { text: 'أحلل الخطأ بالتفصيل وأوثّقه عشان ما يتكرر', scores: { D: 0, I: 0, S: 1, C: 4 } }
+    ]
+  },
+  {
+    id: 12,
+    text: 'كيف تصف نفسك بكلمة واحدة؟',
+    options: [
+      { text: 'حازم — أعرف وش أبغى وأوصله', scores: { D: 4, I: 0, S: 0, C: 1 } },
+      { text: 'اجتماعي — أحب الناس والتواصل', scores: { D: 0, I: 4, S: 1, C: 0 } },
+      { text: 'صبور — أتحمل وأثابر بهدوء', scores: { D: 0, I: 0, S: 4, C: 1 } },
+      { text: 'دقيق — التفاصيل عندي مهمة جداً', scores: { D: 0, I: 0, S: 0, C: 4 } }
+    ]
+  }
+];
+const PROFILE_TYPES = {
+  D: {
+    name: 'القائد الحازم',
+    subtitle: 'Dominance — الشخصية القيادية التنفيذية',
+    emoji: '🦁',
+    color: '#EF4444',
+    desc: 'أنت شخص يحب السيطرة على المواقف واتخاذ القرارات بسرعة. تتميز بالثقة العالية والطموح القوي. تكره البطء والتردد، وتفضل النتائج الملموسة على الكلام. في بيئة العمل أنت المحرك الأول — تبادر، تقود، وتنجز.',
+    jobs: [
+      { icon: '💼', title: 'مبيعات ميدانية — مدير حسابات', match: '95%', desc: 'تحتاج شخصية حازمة تتخذ قرارات سريعة وتقنع العملاء بثقة. مناسبة لنمطك القيادي.', page: 'fieldsales' },
+      { icon: '📞', title: 'كول سنتر — مشرف فريق', match: '88%', desc: 'قدرتك على التحكم بالمواقف الصعبة والتوجيه السريع تجعلك مشرفاً مثالياً.', page: 'callcenter' },
+      { icon: '🤝', title: 'أكونت منجر — B2B', match: '82%', desc: 'التفاوض والحزم في المواقف التجارية يحتاج شخصيتك بالضبط.', page: 'lab' }
+    ],
+    roadmap: [
+      { phase: 'الأسبوع 1–2', title: 'إتقان أدوات التفاوض', desc: 'تعلّم إطار SPIN وتقنيات الإغلاق — تناسب طبيعتك المباشرة.' },
+      { phase: 'الأسبوع 3–4', title: 'تطوير الاستماع الفعّال', desc: 'نقطة تطويرك: تعلّم أن تسمع قبل أن تقرر. تمارين Tactical Labeling.' },
+      { phase: 'الشهر 2', title: 'قيادة سيناريوهات حية', desc: 'دخول المختبر التفاعلي وقيادة محاكاة مع عملاء صعبين.' },
+      { phase: 'الشهر 3', title: 'تولي مسؤولية فريق صغير', desc: 'تطبيق مهارات القيادة على فريق حقيقي مع إرشاد مباشر.' }
+    ],
+    psych: 'نموذج DISC (William Marston, 1928) يُصنّف شخصيتك ضمن High-D: الشخصيات القيادية التي تتحرك بسرعة نحو الأهداف. الدراسات تُظهر أن High-D ينجحون بشكل استثنائي في المبيعات B2B والمفاوضات لأن طبيعتهم المباشرة تبني ثقة فورية مع صناع القرار. التحدي: تطوير الصبر والاستماع لتجنب تجاوز العملاء عاطفياً.'
+  },
+  I: {
+    name: 'المؤثر الاجتماعي',
+    subtitle: 'Influence — الشخصية التواصلية المُلهمة',
+    emoji: '🌟',
+    color: '#EAB308',
+    desc: 'أنت شخص يحب التفاعل مع الناس وإلهامهم. تتميز بالحماس العالي والقدرة على بناء علاقات سريعة. تكره الروتين والعزلة، وتفضل بيئة العمل المليئة بالحيوية. أنت المحفّز الطبيعي لأي فريق — تُشعل الحماس وتبني الروابط.',
+    jobs: [
+      { icon: '📱', title: 'سوشيال ميديا — صانع محتوى', match: '96%', desc: 'إبداعك وحماسك وقدرتك على التواصل = محتوى يتفاعل معه الجمهور.', page: 'social' },
+      { icon: '📞', title: 'كول سنتر — خدمة عملاء VIP', match: '90%', desc: 'قدرتك على بناء علاقات وتهدئة العملاء تجعلك نجماً في خدمة العملاء.', page: 'callcenter' },
+      { icon: '💼', title: 'مبيعات — استشاري عملاء', match: '85%', desc: 'أسلوبك الاجتماعي يبني ثقة العميل ويُسهّل عملية البيع الاستشاري.', page: 'fieldsales' }
+    ],
+    roadmap: [
+      { phase: 'الأسبوع 1–2', title: 'بناء هوية المحتوى', desc: 'تعلّم الخطافات النفسية وأساليب Hook للمنصات الاجتماعية.' },
+      { phase: 'الأسبوع 3–4', title: 'تطوير التركيز والمتابعة', desc: 'نقطة تطويرك: الانضباط في المتابعة وعدم الانشغال بالعلاقات على حساب الإنجاز.' },
+      { phase: 'الشهر 2', title: 'إدارة الأزمات الاجتماعية', desc: 'تعلّم سكريبتات الأزمات — كيف تحوّل غضب الجمهور لولاء.' },
+      { phase: 'الشهر 3', title: 'قيادة حملات تسويقية', desc: 'تصميم وتنفيذ حملة كاملة باستخدام مبادئ علم النفس الاجتماعي.' }
+    ],
+    psych: 'في نموذج DISC أنت High-I: الشخصية المؤثرة اجتماعياً. بحسب دراسات Cialdini (Influence, 2006)، الأشخاص ذوو المهارات الاجتماعية العالية يتفوقون في الأدوار التي تتطلب إقناعاً ناعماً وبناء علاقات. التحدي: تطوير الانضباط في المتابعة وتحويل الحماس إلى نتائج قابلة للقياس.'
+  },
+  S: {
+    name: 'الداعم المستقر',
+    subtitle: 'Steadiness — الشخصية الموثوقة الصبورة',
+    emoji: '🛡️',
+    color: '#22C55E',
+    desc: 'أنت شخص يحب الاستقرار والعمل ضمن نظام واضح. تتميز بالصبر العالي والموثوقية التي يعتمد عليها الفريق. تكره الفوضى والتغييرات المفاجئة، وتفضل الإتقان على السرعة. أنت العمود الفقري لأي فريق — هادئ، مُتقن، وموثوق.',
+    jobs: [
+      { icon: '🔧', title: 'مركز الصيانة — فني متخصص', match: '94%', desc: 'صبرك ودقتك وقدرتك على بناء ثقة العملاء = تجربة صيانة مثالية.', page: 'lab' },
+      { icon: '📞', title: 'كول سنتر — دعم فني', match: '91%', desc: 'صبرك في الاستماع وقدرتك على تهدئة العملاء = أداء متميز.', page: 'callcenter' },
+      { icon: '🤝', title: 'أكونت منجر — إدارة علاقات', match: '86%', desc: 'ثباتك وموثوقيتك يبنيان علاقات طويلة المدى مع العملاء.', page: 'lab' }
+    ],
+    roadmap: [
+      { phase: 'الأسبوع 1–2', title: 'إتقان بروتوكولات الخدمة', desc: 'تعلّم الأنظمة والإجراءات المعيارية — تناسب طبيعتك المنظمة.' },
+      { phase: 'الأسبوع 3–4', title: 'تطوير المبادرة', desc: 'نقطة تطويرك: تعلّم أخذ زمام المبادرة في المواقف الغامضة.' },
+      { phase: 'الشهر 2', title: 'التعامل مع المواقف الطارئة', desc: 'تدريب على سيناريوهات الأزمات — كيف تحافظ على هدوئك وتتصرف.' },
+      { phase: 'الشهر 3', title: 'التخصص التقني العميق', desc: 'التعمق في مجال واحد حتى تصبح المرجع الأول فيه.' }
+    ],
+    psych: 'في نموذج DISC أنت High-S: الشخصية الثابتة الموثوقة. بحسب نظرية Herzberg (Motivation-Hygiene Theory, 1959)، الأشخاص من نمط S يتفوقون في البيئات المستقرة ذات العمليات الواضحة. هم العمود الفقري الحقيقي لأي مؤسسة. التحدي: تطوير المرونة والقدرة على المبادرة في حالات عدم اليقين.'
+  },
+  C: {
+    name: 'المحلل الدقيق',
+    subtitle: 'Conscientiousness — الشخصية التحليلية المتقنة',
+    emoji: '🔬',
+    color: '#0EA5E9',
+    desc: 'أنت شخص يحب الدقة والتحليل العميق. تتميز بالمعايير العالية والقدرة على اكتشاف الأخطاء. تكره العشوائية والعمل السطحي، وتفضل الجودة على الكمية. أنت ضمير الفريق — تضمن أن كل شيء يعمل بشكل صحيح.',
+    jobs: [
+      { icon: '🔧', title: 'مركز الصيانة — مهندس تشخيص', match: '97%', desc: 'دقتك التحليلية وقدرتك على التشخيص المنهجي = إصلاح من أول مرة.', page: 'lab' },
+      { icon: '📊', title: 'تحليل بيانات المبيعات', match: '89%', desc: 'قدرتك على قراءة الأرقام واكتشاف الأنماط = تحسين مستمر.', page: 'fieldsales' },
+      { icon: '📱', title: 'سوشيال ميديا — استراتيجي محتوى', match: '80%', desc: 'تحليلك للبيانات وفهمك للأنماط يصنع استراتيجيات محتوى فعالة.', page: 'social' }
+    ],
+    roadmap: [
+      { phase: 'الأسبوع 1–2', title: 'إتقان أدوات التحليل', desc: 'تعلّم الأدوات التقنية والمنهجيات — تناسب عقليتك التحليلية.' },
+      { phase: 'الأسبوع 3–4', title: 'تطوير سرعة اتخاذ القرار', desc: 'نقطة تطويرك: التخلي عن الكمالية المُعطّلة واتخاذ قرارات بمعلومات 80%.' },
+      { phase: 'الشهر 2', title: 'التواصل مع العملاء', desc: 'تعلّم تبسيط المعلومات التقنية المعقدة للعميل غير المتخصص.' },
+      { phase: 'الشهر 3', title: 'بناء أنظمة ضبط الجودة', desc: 'تصميم بروتوكولات تضمن عدم تكرار الأخطاء — مهمتك المثالية.' }
+    ],
+    psych: 'في نموذج DISC أنت High-C: الشخصية التحليلية الدقيقة. بحسب نظرية Flow لـ Csikszentmihalyi (1990)، الأشخاص من نمط C يدخلون حالة التدفق أسرع في المهام التي تتطلب تركيزاً عميقاً ودقة عالية. هم ضمان الجودة الحي في أي فريق. التحدي: تطوير مهارات التواصل البسيط وتجنب الإفراط في التحليل (Analysis Paralysis).'
+  }
+};
+
+let profileCurrentQ = 0;
+let profileAnswers = [];
+let profileScores = { D: 0, I: 0, S: 0, C: 0 };
+function renderProfileQuestion() {
+  const wrap = document.getElementById('profile-quiz-content');
+  if (!wrap) return;
+
+  const q = PROFILE_QUESTIONS[profileCurrentQ];
+  const total = PROFILE_QUESTIONS.length;
+  const progress = ((profileCurrentQ) / total) * 100;
+
+  let html = `
+    <div class="profile-progress-wrap">
+      <div class="profile-progress-bar">
+        <div class="profile-progress-fill" style="width:${progress}%"></div>
+      </div>
+      <div class="profile-progress-text">${profileCurrentQ + 1} / ${total}</div>
+    </div>
+    <div class="profile-q-counter">السؤال ${profileCurrentQ + 1} من ${total}</div>
+    <div class="profile-question-text">${q.text}</div>
+    <div class="profile-options">`;
+
+  const letters = ['أ', 'ب', 'ج', 'د'];
+  q.options.forEach((opt, i) => {
+    const selected = profileAnswers[profileCurrentQ] === i ? ' selected' : '';
+    html += `
+      <div class="profile-option${selected}" onclick="selectProfileOption(${i})">
+        <div class="profile-option-letter">${letters[i]}</div>
+        <div class="profile-option-text">${opt.text}</div>
+      </div>`;
+  });
+
+  html += `</div>
+    <div class="profile-nav-btns">
+      <button class="btn btn-ghost" ${profileCurrentQ === 0 ? 'disabled style="opacity:0.4;pointer-events:none;"' : ''} onclick="profilePrev()">← السابق</button>
+      <button class="btn btn-primary" id="profile-next-btn" ${profileAnswers[profileCurrentQ] === undefined ? 'disabled style="opacity:0.5;pointer-events:none;"' : ''} onclick="profileNext()">
+        ${profileCurrentQ === total - 1 ? '🎯 عرض النتيجة' : 'التالي →'}
+      </button>
+    </div>`;
+
+  wrap.innerHTML = html;
+}
+
+function selectProfileOption(index) {
+  profileAnswers[profileCurrentQ] = index;
+  renderProfileQuestion();
+}
+
+function profilePrev() {
+  if (profileCurrentQ > 0) {
+    profileCurrentQ--;
+    renderProfileQuestion();
+  }
+}
+
+function profileNext() {
+  if (profileAnswers[profileCurrentQ] === undefined) return;
+  if (profileCurrentQ < PROFILE_QUESTIONS.length - 1) {
+    profileCurrentQ++;
+    renderProfileQuestion();
+  } else {
+    calculateProfileResult();
+  }
+}
+
+function calculateProfileResult() {
+  profileScores = { D: 0, I: 0, S: 0, C: 0 };
+
+  PROFILE_QUESTIONS.forEach((q, idx) => {
+    const answerIdx = profileAnswers[idx];
+    if (answerIdx !== undefined) {
+      const scores = q.options[answerIdx].scores;
+      profileScores.D += scores.D;
+      profileScores.I += scores.I;
+      profileScores.S += scores.S;
+      profileScores.C += scores.C;
+    }
+  });
+
+  const maxScore = Math.max(profileScores.D, profileScores.I, profileScores.S, profileScores.C);
+  let dominantType = 'D';
+  if (profileScores.I === maxScore) dominantType = 'I';
+  if (profileScores.S === maxScore) dominantType = 'S';
+  if (profileScores.C === maxScore) dominantType = 'C';
+
+  showProfileResults(dominantType);
+}
+
+function showProfileResults(type) {
+  const data = PROFILE_TYPES[type];
+
+  document.getElementById('profile-assessment-wrap').style.display = 'none';
+  document.getElementById('profile-results-wrap').style.display = 'block';
+
+  document.getElementById('profile-result-emoji').textContent = data.emoji;
+  document.getElementById('profile-result-type').textContent = data.name;
+  document.getElementById('profile-result-subtitle').textContent = data.subtitle;
+  document.getElementById('profile-result-desc').textContent = data.desc;
+
+  // DISC Bars
+  const totalPossible = PROFILE_QUESTIONS.length * 4;
+  const colors = { D: '#EF4444', I: '#EAB308', S: '#22C55E', C: '#0EA5E9' };
+  const labels = { D: 'الهيمنة', I: 'التأثير', S: 'الثبات', C: 'الإتقان' };
+  let barsHTML = '';
+  ['D', 'I', 'S', 'C'].forEach(key => {
+    const pct = Math.round((profileScores[key] / totalPossible) * 100);
+    barsHTML += `
+      <div class="disc-bar-item">
+        <div class="disc-bar-letter" style="color:${colors[key]}">${key}</div>
+        <div class="disc-bar-label">${labels[key]}</div>
+        <div class="disc-bar-track">
+          <div class="disc-bar-fill" style="width:${pct}%; background:${colors[key]};"></div>
+        </div>
+        <div class="disc-bar-value" style="color:${colors[key]}">${pct}%</div>
+      </div>`;
+  });
+  document.getElementById('profile-disc-bars').innerHTML = barsHTML;
+
+  // Matched Jobs
+  let jobsHTML = '';
+  data.jobs.forEach(job => {
+    jobsHTML += `
+      <div class="matched-job-card" onclick="navigatePage('${job.page}')">
+        <div class="matched-job-icon">${job.icon}</div>
+        <div class="matched-job-title">${job.title}</div>
+        <div class="matched-job-match">🎯 توافق: ${job.match}</div>
+        <div class="matched-job-desc">${job.desc}</div>
+        <button class="matched-job-nav-btn">ابدأ التدريب ←</button>
+      </div>`;
+  });
+  document.getElementById('profile-matched-jobs').innerHTML = jobsHTML;
+
+  // Roadmap
+  let roadHTML = '';
+  data.roadmap.forEach((phase, i) => {
+    roadHTML += `
+      <div class="roadmap-phase">
+        <div class="roadmap-num">${i + 1}</div>
+        <div class="roadmap-content">
+          <div class="roadmap-title">${phase.title}</div>
+          <div class="roadmap-desc">${phase.desc}</div>
+          <span class="roadmap-duration">📅 ${phase.phase}</span>
+        </div>
+      </div>`;
+  });
+  document.getElementById('profile-roadmap').innerHTML = roadHTML;
+
+  // Psychology explanation
+  document.getElementById('profile-psych-explanation').innerHTML = `
+    <div class="psych-info-block" style="grid-column:unset;">
+      <div class="psych-info-label">المرجع الأكاديمي</div>
+      <div class="psych-info-text">${data.psych}</div>
+    </div>`;
+}
+
+function resetProfileAssessment() {
+  profileCurrentQ = 0;
+  profileAnswers = [];
+  profileScores = { D: 0, I: 0, S: 0, C: 0 };
+  document.getElementById('profile-assessment-wrap').style.display = 'block';
+  document.getElementById('profile-results-wrap').style.display = 'none';
+  renderProfileQuestion();
+}
 
   /* ============================================================
      BLOCK P — INIT ALL ON DOMContentLoaded
@@ -8332,6 +8907,7 @@
       if (page === 'fieldsales') setTimeout(() => selectStage(1), 80);
       if (page === 'social')     setTimeout(() => { renderHookPanel(); renderSmartCalendar(); }, 80);
       if (page === 'lab')        setTimeout(() => { renderSimCards(); updateSimStats(); }, 80);
+      if (page === 'newprofile') setTimeout(renderProfileQuestion, 80);
     });
   });
 
