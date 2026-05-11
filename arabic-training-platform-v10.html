@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منصة التدريب الاحترافية v10</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050508;
+      --surface: #0E1220;
+      --surface-2: #151929;
+      --surface-3: #1C2235;
+      --accent: #66FCF1;
+      --accent-dim: rgba(102, 252, 241, 0.12);
+      --accent-glow: rgba(102, 252, 241, 0.35);
+      --accent-soft: rgba(102, 252, 241, 0.06);
+      --text: #F1F5F9;
+      --text-muted: #8B9AB5;
+      --text-faint: #4A5568;
+      --border: rgba(102, 252, 241, 0.08);
+      --border-hover: rgba(102, 252, 241, 0.22);
+      --sidebar-width: 270px;
+      --topbar-height: 64px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --font: 'Cairo', sans-serif;
+      --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 1px 8px rgba(0,0,0,0.35);
+      --shadow-md: 0 4px 24px rgba(0,0,0,0.5);
+      --shadow-accent: 0 0 24px rgba(102, 252, 241, 0.18);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+
+    #app { display: grid; grid-template-columns: var(--sidebar-width) 1fr; grid-template-rows: var(--topbar-height) 1fr; grid-template-areas: "sidebar topbar" "sidebar main"; height: 100vh; width: 100vw; }
+
+    #sidebar { grid-area: sidebar; background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; height: 100vh; position: relative; overflow: hidden; z-index: 100; }
+    #sidebar::after { content: ''; position: absolute; top: 0; right: 0; width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--accent), transparent); opacity: 0.3; }
+
+    .sidebar-logo { padding: 20px 20px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 38px; height: 38px; background: var(--accent-dim); border: 1px solid var(--border-hover); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .logo-icon svg { width: 20px; height: 20px; color: var(--accent); }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-title { font-size: 13px; font-weight: 700; color: var(--text); letter-spacing: 0.3px; line-height: 1.2; }
+    .logo-sub { font-size: 10px; color: var(--accent); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; }
+
+    .sidebar-nav { flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 2px; overflow-y: auto; }
+    .nav-section-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-faint); padding: 10px 10px 4px; margin-top: 6px; }
+    .nav-item { display: flex; align-items: center; gap: 11px; padding: 10px 12px; border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition); color: var(--text-muted); font-size: 13px; font-weight: 500; position: relative; border: 1px solid transparent; user-select: none; }
+    .nav-item:hover { background: var(--accent-soft); color: var(--text); border-color: var(--border); transform: translateX(2px); }
+    .nav-item.active { background: var(--accent-dim); color: var(--accent); border-color: var(--border-hover); box-shadow: var(--shadow-accent); }
+    .nav-item.active::before { content: ''; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); width: 3px; height: 60%; background: var(--accent); border-radius: 99px; box-shadow: 0 0 10px var(--accent); }
+    .nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
+    .nav-label { flex: 1; }
+    .nav-badge { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 99px; background: var(--accent); color: var(--bg); line-height: 1.4; }
+
+    .sidebar-footer { padding: 12px; border-top: 1px solid var(--border); }
+    .user-card { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); }
+    .user-avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #0EA5E9); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--bg); }
+    .user-info { flex: 1; }
+    .user-name { font-size: 12.5px; font-weight: 600; color: var(--text); }
+    .user-role { font-size: 10.5px; color: var(--text-muted); }
+    .user-status { width: 8px; height: 8px; background: #22C55E; border-radius: 50%; box-shadow: 0 0 6px #22C55E; }
+
+    #topbar { grid-area: topbar; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; gap: 16px; z-index: 90; }
+    .topbar-page-title { display: flex; align-items: center; gap: 10px; flex: 1; }
+    #topbar-title { font-size: 15px; font-weight: 700; color: var(--text); }
+    #topbar-breadcrumb { font-size: 11.5px; color: var(--text-muted); }
+    .topbar-actions { display: flex; align-items: center; gap: 8px; }
+    .tb-btn { width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); color: var(--text-muted); position: relative; }
+    .tb-btn:hover { background: var(--surface-3); border-color: var(--border-hover); color: var(--text); }
+    .tb-btn svg { width: 16px; height: 16px; }
+
+    #main { grid-area: main; overflow-y: auto; background: var(--bg); position: relative; display: flex; flex-direction: column; }
+    #main::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; z-index: 0; opacity: 0.4; }
+
+    .page { display: none; padding: 28px; position: relative; z-index: 1; animation: pageFadeIn 0.3s ease; flex: 1; }
+    .page.active { display: block; }
+    @keyframes pageFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .page-header { margin-bottom: 28px; }
+    .page-header h1 { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 5px; }
+    .page-header p { font-size: 13px; color: var(--text-muted); }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; transition: var(--transition); margin-bottom: 16px; }
+    .card:hover { border-color: var(--border-hover); box-shadow: 0 0 18px rgba(102,252,241,0.07); }
+    .card-title { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: var(--transition); position: relative; overflow: hidden; }
+    .stat-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .stat-icon { width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--accent-dim); border: 1px solid var(--border-hover); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .stat-value { font-size: 26px; font-weight: 900; color: var(--text); line-height: 1; }
+    .stat-label { font-size: 12px; color: var(--text-muted); }
+    .stat-delta { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
+    .stat-delta.up { background: rgba(34,197,94,0.12); color: #22C55E; }
+    .stat-delta.down { background: rgba(239,68,68,0.12); color: #EF4444; }
+
+    .tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; font-weight: 600; padding: 3px 9px; border-radius: 99px; }
+    .tag.green { background: rgba(34,197,94,0.1); color: #22C55E; border: 1px solid rgba(34,197,94,0.2); }
+    .tag.yellow { background: rgba(234,179,8,0.1); color: #EAB308; border: 1px solid rgba(234,179,8,0.2); }
+    .tag.red { background: rgba(239,68,68,0.1); color: #EF4444; border: 1px solid rgba(239,68,68,0.2); }
+    .tag.blue { background: rgba(14,165,233,0.1); color: #0EA5E9; border: 1px solid rgba(14,165,233,0.2); }
+    .tag.accent { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border-hover); }
+    .tag.purple { background: rgba(139,92,246,0.1); color: #8B5CF6; border: 1px solid rgba(139,92,246,0.2); }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: var(--radius-sm); font-family: var(--font); font-size: 13px; font-weight: 600; cursor: pointer; transition: var(--transition); border: 1px solid transparent; }
+    .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .btn-primary:hover { background: transparent; color: var(--accent); box-shadow: 0 0 18px var(--accent-glow); }
+    .btn-ghost { background: transparent; color: var(--text-muted); border-color: var(--border); }
+    .btn-ghost:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-hover); }
+
+    .progress-bar { height: 6px; background: var(--surface-3); border-radius: 99px; overflow: hidden; margin-top: 4px; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #0EA5E9); border-radius: 99px; transition: width 0.8s ease; }
+
+    .welcome-banner { background: linear-gradient(135deg, var(--surface) 0%, var(--surface-3) 100%); border: 1px solid var(--border-hover); border-radius: var(--radius-xl); padding: 28px 32px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; overflow: hidden; position: relative; }
+    .welcome-banner::after { content: ''; position: absolute; right: -60px; top: -60px; width: 220px; height: 220px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events: none; }
+    .welcome-text h2 { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+    .welcome-text p { font-size: 13px; color: var(--text-muted); }
+
+    /* Habit Tracker */
+    .habit-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-top: 12px; }
+    .habit-day { width: 100%; aspect-ratio: 1; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--text-faint); cursor: pointer; transition: var(--transition); }
+    .habit-day:hover { border-color: var(--border-hover); }
+    .habit-day.done { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+    .habit-day.today { border-color: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+
+    /* Pomodoro Timer */
+    .pomodoro-wrap { text-align: center; padding: 24px; }
+    .pomodoro-circle { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--border); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; position: relative; }
+    .pomodoro-circle.running { border-color: var(--accent); box-shadow: 0 0 30px var(--accent-glow); animation: pomoPulse 2s ease infinite; }
+    @keyframes pomoPulse { 0%, 100% { box-shadow: 0 0 20px var(--accent-glow); } 50% { box-shadow: 0 0 40px var(--accent-glow); } }
+    .pomodoro-time { font-size: 42px; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; }
+    .pomodoro-btns { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
+
+    /* Breathing Exercise */
+    .breathe-circle { width: 160px; height: 160px; border-radius: 50%; background: var(--accent-dim); border: 2px solid var(--accent); margin: 20px auto; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--accent); transition: all 4s ease; }
+    .breathe-circle.inhale { transform: scale(1.3); background: rgba(102,252,241,0.2); }
+    .breathe-circle.exhale { transform: scale(0.8); background: rgba(102,252,241,0.05); }
+
+    /* EQ Cards */
+    .eq-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; transition: var(--transition); cursor: pointer; position: relative; overflow: hidden; }
+    .eq-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .eq-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+    .eq-card.eq-1::after { background: linear-gradient(90deg, #8B5CF6, #EC4899); }
+    .eq-card.eq-2::after { background: linear-gradient(90deg, var(--accent), #0EA5E9); }
+    .eq-card.eq-3::after { background: linear-gradient(90deg, #EAB308, #F97316); }
+    .eq-card.eq-4::after { background: linear-gradient(90deg, #22C55E, #0EA5E9); }
+    .eq-card.eq-5::after { background: linear-gradient(90deg, #EF4444, #F97316); }
+    .eq-card h3 { font-size: 14px; font-weight: 800; color: var(--text); margin: 10px 0 8px; }
+    .eq-card p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+    .eq-icon { font-size: 28px; margin-bottom: 8px; }
+
+    /* Negotiation */
+    .nego-step { display: flex; align-items: flex-start; gap: 14px; padding: 16px; border-bottom: 1px solid var(--border); transition: var(--transition); }
+    .nego-step:hover { background: var(--accent-soft); }
+    .nego-step:last-child { border-bottom: none; }
+    .nego-num { width: 32px; height: 32px; border-radius: 50%; background: var(--accent-dim); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: var(--accent); flex-shrink: 0; }
+    .nego-content h4 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .nego-content p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+    /* Leadership */
+    .leader-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; transition: var(--transition); }
+    .leader-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .leader-card h3 { font-size: 14px; font-weight: 800; color: var(--text); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .leader-card p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+    .leader-card .tip { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; margin-top: 10px; font-size: 11.5px; color: var(--text-muted); border-right: 3px solid var(--accent); }
+
+    /* Quote */
+    .quote-card { background: linear-gradient(135deg, var(--surface), var(--surface-3)); border: 1px solid var(--border-hover); border-radius: var(--radius-xl); padding: 32px; text-align: center; position: relative; overflow: hidden; }
+    .quote-card::before { content: '"'; position: absolute; top: 10px; right: 20px; font-size: 80px; color: var(--accent); opacity: 0.1; font-family: serif; }
+    .quote-text { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.8; margin-bottom: 12px; }
+    .quote-author { font-size: 12px; color: var(--accent); font-weight: 600; }
+
+    /* Journal */
+    .journal-area { width: 100%; min-height: 150px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; color: var(--text); font-family: var(--font); font-size: 13px; line-height: 1.8; resize: vertical; outline: none; transition: var(--transition); }
+    .journal-area:focus { border-color: var(--border-hover); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .journal-prompts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .journal-prompt { font-size: 11px; padding: 5px 12px; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; transition: var(--transition); }
+    .journal-prompt:hover { border-color: var(--border-hover); color: var(--accent); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      #app { grid-template-columns: 1fr; grid-template-areas: "topbar" "main"; }
+      #sidebar { display: none; }
+      .grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar">
+    <a class="sidebar-logo" href="#" onclick="return false;">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-title">أكاديمية التميز</span>
+        <span class="logo-sub">منصة التدريب الذاتي v10</span>
+      </div>
+    </a>
+    <div class="sidebar-nav">
+      <div class="nav-section-label">القائمة الرئيسية</div>
+      <div class="nav-item active" onclick="showPage('dashboard', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span class="nav-label">لوحة التحكم</span>
+      </div>
+
+      <div class="nav-section-label">التطوير الذاتي</div>
+      <div class="nav-item" onclick="showPage('selfdev', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.84A2.5 2.5 0 0 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.84A2.5 2.5 0 0 0 14.5 2"/></svg>
+        <span class="nav-label">الذكاء العاطفي</span>
+        <span class="nav-badge" style="background:linear-gradient(135deg,#8B5CF6,#EC4899);color:#fff;">جديد</span>
+      </div>
+      <div class="nav-item" onclick="showPage('habits', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span class="nav-label">تتبع العادات</span>
+        <span class="nav-badge">21</span>
+      </div>
+      <div class="nav-item" onclick="showPage('productivity', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span class="nav-label">الإنتاجية</span>
+      </div>
+
+      <div class="nav-section-label">مهارات احترافية</div>
+      <div class="nav-item" onclick="showPage('negotiation', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="nav-label">فن التفاوض</span>
+        <span class="nav-badge" style="background:linear-gradient(135deg,#F97316,#EF4444);color:#fff;">8</span>
+      </div>
+      <div class="nav-item" onclick="showPage('leadership', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span class="nav-label">مهارات القيادة</span>
+      </div>
+      <div class="nav-item" onclick="showPage('journal', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span class="nav-label">يوميات التأمل</span>
+      </div>
+
+      <div class="nav-section-label">مهارات العمل</div>
+      <div class="nav-item" onclick="showPage('callcenter', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.94a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="nav-label">وحدة كول سنتر</span>
+      </div>
+      <div class="nav-item" onclick="showPage('sales', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        <span class="nav-label">المبيعات</span>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">أح</div>
+        <div class="user-info">
+          <div class="user-name">أحمد</div>
+          <div class="user-role">متدرب ذاتي</div>
+        </div>
+        <div class="user-status"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TOPBAR -->
+  <header id="topbar">
+    <div class="topbar-page-title">
+      <div>
+        <div id="topbar-title">لوحة التحكم</div>
+        <div id="topbar-breadcrumb">الرئيسية / لوحة التحكم</div>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div class="tb-btn" title="الوضع المظلم">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </div>
+      <div class="tb-btn" onclick="showPage('productivity', document.querySelector('[onclick*=productivity]'))">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main">
+
+
+    <!-- PAGE: DASHBOARD -->
+    <section class="page active" id="page-dashboard">
+      <div class="page-header">
+        <h1>مرحبا بك في رحلة التطوير الذاتي</h1>
+        <p>الاثنين، 11 مايو 2026 — نظرة شاملة على تقدمك ومهاراتك</p>
+      </div>
+
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <h2>استمر في رحلة التميز</h2>
+          <p>لديك 6 وحدات تدريبية نشطة — أكملت 73% من أهداف هذا الأسبوع</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--accent-dim);border:1px solid var(--border-hover);border-radius:var(--radius-md);padding:12px 18px;">
+          <span style="font-size:20px;">🏆</span>
+          <span style="font-size:12px;font-weight:600;color:var(--accent);">المستوى الذهبي</span>
+        </div>
+      </div>
+
+      <div class="grid-4" style="margin-bottom:20px;">
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div><div class="stat-value">73<span style="font-size:16px;color:var(--text-muted)">%</span></div><div class="stat-label">أهداف الأسبوع</div></div>
+          <span class="stat-delta up">+8%</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div><div class="stat-value">14</div><div class="stat-label">أيام متتالية</div></div>
+          <span class="stat-delta up">streak</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📚</div>
+          <div><div class="stat-value">42</div><div class="stat-label">ساعة تدريب</div></div>
+          <span class="stat-delta up">+5h</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div><div class="stat-value">6</div><div class="stat-label">مهارات مكتسبة</div></div>
+          <span class="stat-delta up">+2</span>
+        </div>
+      </div>
+
+      <!-- Daily Quote -->
+      <div class="quote-card" style="margin-bottom:20px;">
+        <div class="quote-text" id="dailyQuote">النجاح ليس نهائياً، والفشل ليس قاتلاً — إنها الشجاعة للاستمرار هي ما يهم</div>
+        <div class="quote-author" id="quoteAuthor">— ونستون تشرشل</div>
+      </div>
+
+      <!-- Progress Overview -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">تقدم المهارات</div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;"><span>الذكاء العاطفي</span><span>78%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;"><span>فن التفاوض</span><span>65%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:65%;background:linear-gradient(90deg,#8B5CF6,#EC4899)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;"><span>القيادة</span><span>52%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:52%;background:linear-gradient(90deg,#EAB308,#F97316)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;"><span>مهارات التواصل</span><span>88%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:88%;background:linear-gradient(90deg,#22C55E,#0EA5E9)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;"><span>إدارة الوقت</span><span>70%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:70%;background:linear-gradient(90deg,#F97316,#EF4444)"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">أهداف اليوم</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <label style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;transition:var(--transition);">
+              <input type="checkbox" id="goal1" style="accent-color:var(--accent);width:18px;height:18px;">
+              <span style="font-size:13px;color:var(--text);">قراءة 20 دقيقة في الذكاء العاطفي</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+              <input type="checkbox" id="goal2" style="accent-color:var(--accent);width:18px;height:18px;">
+              <span style="font-size:13px;color:var(--text);">تمرين التنفس الصباحي (5 دقائق)</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+              <input type="checkbox" id="goal3" style="accent-color:var(--accent);width:18px;height:18px;">
+              <span style="font-size:13px;color:var(--text);">إكمال سيناريو تفاوض واحد</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+              <input type="checkbox" id="goal4" style="accent-color:var(--accent);width:18px;height:18px;">
+              <span style="font-size:13px;color:var(--text);">كتابة يوميات التأمل المسائية</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+              <input type="checkbox" id="goal5" style="accent-color:var(--accent);width:18px;height:18px;">
+              <span style="font-size:13px;color:var(--text);">جلسة Pomodoro واحدة (25 دقيقة)</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PAGE: EMOTIONAL INTELLIGENCE -->
+    <section class="page" id="page-selfdev">
+      <div class="page-header">
+        <h1>وحدة الذكاء العاطفي</h1>
+        <p>تعرّف على مشاعرك، افهم الآخرين، وتحكّم في ردود أفعالك — مبني على نموذج Daniel Goleman</p>
+      </div>
+
+      <div class="grid-4" style="margin-bottom:20px;">
+        <div class="stat-card"><div class="stat-icon">🧠</div><div><div class="stat-value">5</div><div class="stat-label">أبعاد رئيسية</div></div></div>
+        <div class="stat-card"><div class="stat-icon">🎯</div><div><div class="stat-value">78<span style="font-size:14px;color:var(--text-muted)">%</span></div><div class="stat-label">مستوى الإتقان</div></div></div>
+        <div class="stat-card"><div class="stat-icon">📖</div><div><div class="stat-value">15</div><div class="stat-label">تمرين عملي</div></div></div>
+        <div class="stat-card"><div class="stat-icon">⏱️</div><div><div class="stat-value">8h</div><div class="stat-label">وقت التدريب</div></div></div>
+      </div>
+
+      <!-- EQ 5 Pillars -->
+      <div style="margin-bottom:14px;">
+        <div style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:4px;">الأبعاد الخمسة للذكاء العاطفي</div>
+        <div style="font-size:12px;color:var(--text-muted);">نموذج Goleman (1995) — كل بُعد يحتوي تمارين تطبيقية وأمثلة واقعية</div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom:24px;">
+        <div class="eq-card eq-1">
+          <div class="eq-icon">🪞</div>
+          <h3>1. الوعي الذاتي</h3>
+          <span class="tag purple">Self-Awareness</span>
+          <p style="margin-top:10px;">القدرة على التعرف على مشاعرك لحظة بلحظة وفهم تأثيرها على أفكارك وسلوكك. هذا هو الأساس — بدونه لا يمكنك إدارة ما لا تراه.</p>
+          <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;margin-top:12px;">
+            <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">تمرين عملي</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">كل ساعة، توقف 30 ثانية واسأل نفسك: "ما الشعور الذي أحسه الآن؟ من أين جاء؟ كيف يؤثر على قراراتي؟" — سجّل إجاباتك في يومياتك.</div>
+          </div>
+        </div>
+
+        <div class="eq-card eq-2">
+          <div class="eq-icon">🎛️</div>
+          <h3>2. التنظيم الذاتي</h3>
+          <span class="tag accent">Self-Regulation</span>
+          <p style="margin-top:10px;">القدرة على التحكم في ردود الفعل الاندفاعية وإدارة المشاعر بطريقة صحية. ليس كبت المشاعر — بل توجيهها بوعي.</p>
+          <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;margin-top:12px;">
+            <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">تقنية 6 ثوانٍ</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">عند الغضب أو الإحباط: توقف 6 ثوانٍ قبل أي رد فعل. هذا الوقت كافٍ لانتقال السيطرة من اللوزة الدماغية إلى القشرة الأمامية (Prefrontal Cortex).</div>
+          </div>
+        </div>
+
+        <div class="eq-card eq-3">
+          <div class="eq-icon">🔥</div>
+          <h3>3. الدافعية الذاتية</h3>
+          <span class="tag yellow">Motivation</span>
+          <p style="margin-top:10px;">الدافع الداخلي للإنجاز بعيداً عن المكافآت الخارجية. الشغف والمثابرة والقدرة على تأجيل الإشباع الفوري من أجل أهداف أكبر.</p>
+          <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;margin-top:12px;">
+            <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">تقنية "لماذا × 5"</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">اسأل "لماذا أريد هذا؟" خمس مرات متتالية. كل إجابة تكشف طبقة أعمق من الدافع الحقيقي. الدوافع العميقة لا تنطفئ بسهولة.</div>
+          </div>
+        </div>
+
+        <div class="eq-card eq-4">
+          <div class="eq-icon">🤝</div>
+          <h3>4. التعاطف</h3>
+          <span class="tag green">Empathy</span>
+          <p style="margin-top:10px;">القدرة على فهم مشاعر الآخرين واحتياجاتهم دون أن يخبروك بها مباشرة. ليس الشفقة — بل الفهم العميق الذي يبني الثقة.</p>
+          <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;margin-top:12px;">
+            <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">تمرين المراقبة الصامتة</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">في اجتماعك القادم: لا تتكلم أول 5 دقائق. راقب لغة الجسد، نبرة الصوت، ما لا يُقال. دوّن ملاحظاتك — ستندهش كم معلومة تفوتك عادةً.</div>
+          </div>
+        </div>
+
+        <div class="eq-card eq-5" style="grid-column: span 2;">
+          <div class="eq-icon">🌐</div>
+          <h3>5. المهارات الاجتماعية</h3>
+          <span class="tag red">Social Skills</span>
+          <p style="margin-top:10px;">إدارة العلاقات وبناء شبكات، القدرة على التأثير، القيادة، حل النزاعات، والتعاون الفعّال. هذا البُعد هو ثمرة الأبعاد الأربعة السابقة مجتمعة — لا يمكنك إتقانه بدونها.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+            <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;">
+              <div style="font-size:10px;font-weight:700;color:#22C55E;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">مهارة التأثير</div>
+              <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">استخدم "نحن" بدلاً من "أنا" — اللغة الجماعية تخلق شعوراً بالشراكة وتقلل المقاومة تلقائياً.</div>
+            </div>
+            <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;">
+              <div style="font-size:10px;font-weight:700;color:#EF4444;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">خطأ شائع</div>
+              <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">محاولة إرضاء الجميع = فقدان الاحترام. المهارة الاجتماعية الحقيقية تشمل القدرة على قول "لا" بلطف.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EQ Daily Assessment -->
+      <div class="card">
+        <div class="card-title">التقييم الذاتي اليومي — كيف حالك العاطفية اليوم؟</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;" id="moodTracker">
+          <button onclick="selectMood(this,'ممتاز')" style="padding:12px 20px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface-2);cursor:pointer;font-size:24px;transition:var(--transition);" title="ممتاز">😊</button>
+          <button onclick="selectMood(this,'جيد')" style="padding:12px 20px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface-2);cursor:pointer;font-size:24px;transition:var(--transition);" title="جيد">🙂</button>
+          <button onclick="selectMood(this,'عادي')" style="padding:12px 20px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface-2);cursor:pointer;font-size:24px;transition:var(--transition);" title="عادي">😐</button>
+          <button onclick="selectMood(this,'متوتر')" style="padding:12px 20px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface-2);cursor:pointer;font-size:24px;transition:var(--transition);" title="متوتر">😤</button>
+          <button onclick="selectMood(this,'حزين')" style="padding:12px 20px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface-2);cursor:pointer;font-size:24px;transition:var(--transition);" title="حزين">😔</button>
+        </div>
+        <div id="moodResult" style="margin-top:12px;font-size:13px;color:var(--accent);display:none;"></div>
+      </div>
+    </section>
+
+
+    <!-- PAGE: HABITS TRACKER -->
+    <section class="page" id="page-habits">
+      <div class="page-header">
+        <h1>نظام تتبع العادات</h1>
+        <p>21 يوماً لبناء عادة — تتبع التزامك اليومي وابنِ سلسلة نجاح لا تنقطع</p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom:20px;">
+        <div class="stat-card"><div class="stat-icon">🔥</div><div><div class="stat-value">14</div><div class="stat-label">أيام Streak الحالي</div></div><span class="stat-delta up">أطول streak: 21</span></div>
+        <div class="stat-card"><div class="stat-icon">✅</div><div><div class="stat-value">87<span style="font-size:14px;color:var(--text-muted)">%</span></div><div class="stat-label">نسبة الالتزام</div></div><span class="stat-delta up">+5%</span></div>
+        <div class="stat-card"><div class="stat-icon">🏆</div><div><div class="stat-value">5</div><div class="stat-label">عادات مكتملة (21 يوم)</div></div></div>
+      </div>
+
+      <!-- Habit Cards -->
+      <div style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:14px;">عاداتك النشطة</div>
+
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:22px;">📖</span>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--text);">القراءة اليومية</div>
+                <div style="font-size:11px;color:var(--text-muted);">20 دقيقة يومياً</div>
+              </div>
+            </div>
+            <span class="tag green">14/21</span>
+          </div>
+          <div class="progress-bar" style="margin-bottom:12px;"><div class="progress-fill" style="width:66%"></div></div>
+          <div class="habit-grid" id="habitReading"></div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:22px;">🧘</span>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--text);">التأمل والتنفس</div>
+                <div style="font-size:11px;color:var(--text-muted);">10 دقائق يومياً</div>
+              </div>
+            </div>
+            <span class="tag accent">12/21</span>
+          </div>
+          <div class="progress-bar" style="margin-bottom:12px;"><div class="progress-fill" style="width:57%;background:linear-gradient(90deg,#8B5CF6,#EC4899)"></div></div>
+          <div class="habit-grid" id="habitMeditation"></div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:22px;">🏋️</span>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--text);">التمرين الرياضي</div>
+                <div style="font-size:11px;color:var(--text-muted);">30 دقيقة يومياً</div>
+              </div>
+            </div>
+            <span class="tag yellow">10/21</span>
+          </div>
+          <div class="progress-bar" style="margin-bottom:12px;"><div class="progress-fill" style="width:47%;background:linear-gradient(90deg,#EAB308,#F97316)"></div></div>
+          <div class="habit-grid" id="habitExercise"></div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:22px;">✍️</span>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--text);">الكتابة اليومية</div>
+                <div style="font-size:11px;color:var(--text-muted);">يوميات أو أفكار</div>
+              </div>
+            </div>
+            <span class="tag green">16/21</span>
+          </div>
+          <div class="progress-bar" style="margin-bottom:12px;"><div class="progress-fill" style="width:76%;background:linear-gradient(90deg,#22C55E,#0EA5E9)"></div></div>
+          <div class="habit-grid" id="habitWriting"></div>
+        </div>
+      </div>
+
+      <!-- Habit Science -->
+      <div class="card">
+        <div class="card-title">علم بناء العادات — The Habit Loop</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px;">
+          <div style="text-align:center;padding:16px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="font-size:28px;margin-bottom:8px;">🔔</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">1. المحفز</div>
+            <div style="font-size:11px;color:var(--text-muted);">Cue — الإشارة التي تُطلق السلوك</div>
+          </div>
+          <div style="text-align:center;padding:16px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="font-size:28px;margin-bottom:8px;">💭</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">2. الرغبة</div>
+            <div style="font-size:11px;color:var(--text-muted);">Craving — الدافع وراء العادة</div>
+          </div>
+          <div style="text-align:center;padding:16px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="font-size:28px;margin-bottom:8px;">⚡</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">3. الاستجابة</div>
+            <div style="font-size:11px;color:var(--text-muted);">Response — الفعل نفسه</div>
+          </div>
+          <div style="text-align:center;padding:16px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="font-size:28px;margin-bottom:8px;">🎁</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">4. المكافأة</div>
+            <div style="font-size:11px;color:var(--text-muted);">Reward — ما يُعزز التكرار</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:14px;background:var(--accent-dim);border:1px solid var(--border-hover);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);line-height:1.7;">
+          <strong style="color:var(--accent);">نصيحة James Clear (Atomic Habits):</strong> لا تركّز على الهدف — ركّز على النظام. بدل "أريد أن أقرأ 20 كتاباً"، قل "أنا شخص يقرأ كل يوم". الهوية تصنع العادة، لا العكس.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PAGE: PRODUCTIVITY -->
+    <section class="page" id="page-productivity">
+      <div class="page-header">
+        <h1>وحدة الإنتاجية</h1>
+        <p>أدوات عملية لإدارة وقتك وطاقتك — مؤقت Pomodoro، تمارين التنفس، ومصفوفة الأولويات</p>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:20px;">
+        <!-- Pomodoro Timer -->
+        <div class="card">
+          <div class="card-title">مؤقت Pomodoro</div>
+          <div class="pomodoro-wrap">
+            <div class="pomodoro-circle" id="pomoCircle">
+              <div class="pomodoro-time" id="pomoTime">25:00</div>
+            </div>
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;" id="pomoLabel">جلسة تركيز — 25 دقيقة</div>
+            <div class="pomodoro-btns">
+              <button class="btn btn-primary" onclick="startPomodoro()">▶ ابدأ</button>
+              <button class="btn btn-ghost" onclick="resetPomodoro()">⟳ إعادة</button>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;">
+              <span class="tag accent" id="pomoCount">0 جلسات اليوم</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Breathing Exercise -->
+        <div class="card">
+          <div class="card-title">تمرين التنفس — تقنية 4-7-8</div>
+          <div style="text-align:center;padding:20px;">
+            <div class="breathe-circle" id="breatheCircle">جاهز</div>
+            <div style="font-size:12px;color:var(--text-muted);margin:12px 0;" id="breatheLabel">اضغط لبدء تمرين التنفس العميق</div>
+            <button class="btn btn-primary" onclick="startBreathing()" id="breatheBtn">🫁 ابدأ التنفس</button>
+            <div style="margin-top:16px;padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);text-align:right;">
+              <div style="font-size:11px;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">كيف تعمل تقنية 4-7-8</div>
+              <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">
+                <strong style="color:var(--accent);">شهيق</strong> لمدة 4 ثوانٍ ←
+                <strong style="color:#EAB308;">حبس</strong> لمدة 7 ثوانٍ ←
+                <strong style="color:#22C55E;">زفير</strong> لمدة 8 ثوانٍ<br>
+                كررها 4 مرات. ابتكرها Dr. Andrew Weil — تُقلّل التوتر خلال 60 ثانية.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Eisenhower Matrix -->
+      <div class="card">
+        <div class="card-title">مصفوفة أيزنهاور — ترتيب الأولويات</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:14px;">صنّف مهامك حسب الأهمية والاستعجال — ركّز على المربع الأول والثاني</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:var(--radius-md);padding:16px;">
+            <div style="font-size:11px;font-weight:800;color:#EF4444;margin-bottom:8px;">🔴 عاجل + مهم — افعل الآن</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">المهام التي لها مواعيد نهائية قريبة وعواقب خطيرة. أزمات، مشاكل صحية، مواعيد تسليم حرجة.</div>
+          </div>
+          <div style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius-md);padding:16px;">
+            <div style="font-size:11px;font-weight:800;color:#22C55E;margin-bottom:8px;">🟢 مهم + غير عاجل — جدوِل</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">التطوير الذاتي، بناء العلاقات، التخطيط الاستراتيجي. هذا المربع يصنع الفرق بين الناجحين والمنشغلين.</div>
+          </div>
+          <div style="background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius-md);padding:16px;">
+            <div style="font-size:11px;font-weight:800;color:#EAB308;margin-bottom:8px;">🟡 عاجل + غير مهم — فوّض</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">اتصالات غير ضرورية، اجتماعات يمكن لغيرك حضورها، مهام روتينية. هذه تسرق وقتك دون إنتاجية.</div>
+          </div>
+          <div style="background:rgba(148,163,184,0.06);border:1px solid rgba(148,163,184,0.2);border-radius:var(--radius-md);padding:16px;">
+            <div style="font-size:11px;font-weight:800;color:var(--text-faint);margin-bottom:8px;">⚪ غير عاجل + غير مهم — احذف</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">تصفح السوشيال بلا هدف، مشاهدة عشوائية، مهام لا تخدم أي هدف. قلّلها بلا تردد.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time Blocking Tips -->
+      <div class="card">
+        <div class="card-title">نصائح Time Blocking</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:20px;margin-bottom:8px;">🌅</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">الصباح: العمل العميق</div>
+            <div style="font-size:11px;color:var(--text-muted);">8–11 صباحاً: ذروة الطاقة المعرفية. خصّصها للمهام الإبداعية والتحليلية.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:20px;margin-bottom:8px;">☀️</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">الظهر: العمل التعاوني</div>
+            <div style="font-size:11px;color:var(--text-muted);">11–2 ظهراً: اجتماعات، مكالمات، ردود على الإيميلات. طاقة متوسطة.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:20px;margin-bottom:8px;">🌙</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">المساء: المراجعة والتخطيط</div>
+            <div style="font-size:11px;color:var(--text-muted);">المساء: راجع يومك، خطط للغد، اكتب يومياتك. دع عقلك يتحضّر للراحة.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PAGE: NEGOTIATION -->
+    <section class="page" id="page-negotiation">
+      <div class="page-header">
+        <h1>فن التفاوض المتقدم</h1>
+        <p>8 استراتيجيات مبنية على علم النفس السلوكي — من Chris Voss إلى Robert Cialdini</p>
+      </div>
+
+      <div class="grid-4" style="margin-bottom:20px;">
+        <div class="stat-card"><div class="stat-icon">🎯</div><div><div class="stat-value">8</div><div class="stat-label">استراتيجيات</div></div></div>
+        <div class="stat-card"><div class="stat-icon">📋</div><div><div class="stat-value">24</div><div class="stat-label">سكريبت جاهز</div></div></div>
+        <div class="stat-card"><div class="stat-icon">⚡</div><div><div class="stat-value">65<span style="font-size:14px;color:var(--text-muted)">%</span></div><div class="stat-label">مستوى الإتقان</div></div></div>
+        <div class="stat-card"><div class="stat-icon">🧪</div><div><div class="stat-value">12</div><div class="stat-label">سيناريو تطبيقي</div></div></div>
+      </div>
+
+      <!-- Negotiation Steps -->
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">الخطوات الثمانية للتفاوض الفعّال</div>
+        <div class="nego-step">
+          <div class="nego-num">1</div>
+          <div class="nego-content">
+            <h4>التحضير والبحث — 80% من النجاح</h4>
+            <p>اعرف ماذا تريد، ماذا يريد الطرف الآخر، وما هو الـ BATNA (أفضل بديل للاتفاقية). التفاوض يُكسب قبل أن يبدأ. اجمع معلومات عن اهتمامات الطرف الآخر، قيوده، وما يمكنه التنازل عنه.</p>
+          </div>
+        </div>
+        <div class="nego-step">
+          <div class="nego-num">2</div>
+          <div class="nego-content">
+            <h4>بناء العلاقة أولاً — قبل أي طلب</h4>
+            <p>الناس يتفاوضون مع من يثقون بهم. ابدأ بأسئلة شخصية خفيفة، أظهر اهتماماً حقيقياً. هذا ليس تلاعباً — هذا بناء أرضية مشتركة تسمح بحوار مفتوح.</p>
+          </div>
+        </div>
+        <div class="nego-step">
+          <div class="nego-num">3</div>
+          <div class="nego-content">
+            <h4>الاستماع الاستراتيجي — اسأل أكثر مما تتكلم</h4>
+            <p>من يتكلم أكثر في التفاوض يخسر معلومات. استخدم أسئلة مفتوحة: "ما الذي يهمك أكثر في هذا الموضوع؟" — دع الطرف الآخر يكشف أولوياته بنفسه.</p>
+          </div>
+        </div>
+        <div class="nego-step">
+          <div class="nego-num">4</div>
+          <div class="nego-content">
+            <h4>Tactical Empathy — التعاطف التكتيكي</h4>
+            <p>تقنية Chris Voss: سمِّ مشاعر الطرف الآخر بصوت عالٍ. "يبدو أنك قلق من أن هذا الاتفاق لن يحقق ما تحتاجه..." — هذا يُذيب المقاومة ويفتح الحوار الحقيقي.</p>
+          </div>
+        </div>
+        <div class="nego-step">
+          <div class="nego-num">5</div>
+          <div class="nego-content">
+            <h4>التأطير — Framing</h4>
+            <p>كيف تُقدّم العرض أهم من العرض نفسه. "بدل خصم 10%" قل "توفير 10,000 ريال سنوياً". الأرقام المطلقة تؤثر أكثر من النسب. Loss Framing أقوى من Gain Framing.</p>
+          </div>
+        </div>
+        <div class="nego-step">
+          <div class="nego-num">6</div>
+          <div class="nego-content">
+            <h4>الصمت الاستراتيجي — قوة السكوت</h4>
+            <p>بعد تقديم عرضك: اصمت. لا تُضف. لا تُبرر. الصمت يُشعر الطرف الآخر بحاجة لملء الفراغ — وغالباً ما يملأه بتنازل أو معلومة قيّمة.</p>
+          </div>
+        </div>
+        <div class="nego-step">
+          <div class="nego-num">7</div>
+          <div class="nego-content">
+            <h4>التنازلات المحسوبة — Give to Get</h4>
+            <p>لا تتنازل مجاناً أبداً. كل تنازل يجب أن يُقابل بشيء: "ممكن أوافق على هذا الشرط إذا..." — هذا يحافظ على قيمة ما تُعطيه ويخلق حركة في الاتجاهين.</p>
+          </div>
+        </div>
+        <div class="nego-step">
+          <div class="nego-num">8</div>
+          <div class="nego-content">
+            <h4>الإغلاق والتوثيق — اجعله رسمياً</h4>
+            <p>الاتفاق الشفهي ليس اتفاقاً. لخّص ما تم الاتفاق عليه بصوت عالٍ، تأكد من الموافقة، ثم وثّق فوراً. "خليني ألخّص: اتفقنا على X بشرط Y، صح؟"</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Negotiation Psychology -->
+      <div class="card">
+        <div class="card-title">مبادئ Cialdini الست للتأثير في التفاوض</div>
+        <div class="grid-3" style="margin-top:14px;">
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid var(--accent);">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">1. المعاملة بالمثل</div>
+            <div style="font-size:11.5px;color:var(--text-muted);line-height:1.7;">أعطِ أولاً — تنازل صغير في البداية يُلزم الطرف الآخر نفسياً بالرد بتنازل مقابل.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #8B5CF6;">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">2. الالتزام والاتساق</div>
+            <div style="font-size:11.5px;color:var(--text-muted);line-height:1.7;">اجعل الطرف الآخر يقول "نعم" لأشياء صغيرة — سيصعب عليه قول "لا" للطلب الكبير.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #22C55E;">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">3. الإثبات الاجتماعي</div>
+            <div style="font-size:11.5px;color:var(--text-muted);line-height:1.7;">"أغلب عملائنا في نفس قطاعكم اختاروا هذا الخيار" — القرارات الجماعية تُقلّل المخاطرة المُدركة.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #EAB308;">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">4. السلطة والخبرة</div>
+            <div style="font-size:11.5px;color:var(--text-muted);line-height:1.7;">أظهر خبرتك بهدوء — أرقام، شهادات، نتائج سابقة. السلطة المُثبتة تُقلّل الحاجة للإقناع اللفظي.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #EC4899;">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">5. الإعجاب والمودة</div>
+            <div style="font-size:11.5px;color:var(--text-muted);line-height:1.7;">الناس يتفقون مع من يُشبههم أو يُعجبون به. ابحث عن أرضية مشتركة واستخدمها لبناء الألفة.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #EF4444;">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">6. الندرة</div>
+            <div style="font-size:11.5px;color:var(--text-muted);line-height:1.7;">"هذا العرض صالح حتى نهاية الأسبوع فقط" — الندرة الحقيقية تُسرّع القرار. الندرة المُفتعلة تُدمّر الثقة.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PAGE: LEADERSHIP -->
+    <section class="page" id="page-leadership">
+      <div class="page-header">
+        <h1>مهارات القيادة</h1>
+        <p>من القائد التقليدي إلى القائد الخادم — أساليب قيادية حديثة للعصر الرقمي</p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom:20px;">
+        <div class="leader-card">
+          <h3><span style="color:var(--accent);">🎯</span> القيادة بالرؤية</h3>
+          <p>حدّد "لماذا" قبل "ماذا". الفريق لا يتبع خطة — يتبع معنى. سايمون سينك يقول: "الناس لا يشترون ما تفعله، بل لماذا تفعله." ابدأ كل مشروع بتوضيح الهدف الأعمق.</p>
+          <div class="tip"><strong>تطبيق:</strong> في اجتماعك القادم، ابدأ بـ"الهدف من هذا المشروع هو..." وليس "المهام المطلوبة هي..."</div>
+        </div>
+        <div class="leader-card">
+          <h3><span style="color:#8B5CF6;">🛡️</span> الأمان النفسي</h3>
+          <p>Google's Project Aristotle: الفِرَق الأعلى أداءً ليست الأذكى — بل الأكثر أماناً نفسياً. عندما يشعر الفرد أنه لن يُعاقب على الخطأ، يبدع ويبادر.</p>
+          <div class="tip"><strong>تطبيق:</strong> عندما يُخطئ أحد فريقك، اسأل "ما الذي نتعلمه من هذا؟" بدل "من المسؤول؟"</div>
+        </div>
+        <div class="leader-card">
+          <h3><span style="color:#EAB308;">⚡</span> التفويض الذكي</h3>
+          <p>التفويض ليس تخلصاً من المهام — بل استثماراً في قدرات الآخرين. القائد الذي يفعل كل شيء بنفسه يخنق فريقه ويحترق هو شخصياً.</p>
+          <div class="tip"><strong>قاعدة 70%:</strong> إذا كان شخص آخر يستطيع أداء المهمة بنسبة 70% من مستواك — فوّضها. الـ 30% المتبقية سيتعلمها بالممارسة.</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">أساليب القيادة الستة — Daniel Goleman</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+            <div style="padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);border-right:3px solid var(--accent);">
+              <div style="font-size:12px;font-weight:700;color:var(--text);">1. القيادة الرؤيوية</div>
+              <div style="font-size:11px;color:var(--text-muted);">"تعالوا معي نحو هذا الهدف" — الأفضل عند الحاجة لاتجاه جديد</div>
+            </div>
+            <div style="padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);border-right:3px solid #22C55E;">
+              <div style="font-size:12px;font-weight:700;color:var(--text);">2. القيادة التدريبية</div>
+              <div style="font-size:11px;color:var(--text-muted);">"جرّب هذا الأسلوب" — الأفضل لتطوير الأفراد على المدى الطويل</div>
+            </div>
+            <div style="padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);border-right:3px solid #8B5CF6;">
+              <div style="font-size:12px;font-weight:700;color:var(--text);">3. القيادة التشاركية</div>
+              <div style="font-size:11px;color:var(--text-muted);">"ما رأيكم؟" — الأفضل لبناء الإجماع والشعور بالملكية</div>
+            </div>
+            <div style="padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);border-right:3px solid #EAB308;">
+              <div style="font-size:12px;font-weight:700;color:var(--text);">4. القيادة العاطفية</div>
+              <div style="font-size:11px;color:var(--text-muted);">"الناس أولاً" — الأفضل لشفاء الفريق بعد الأزمات</div>
+            </div>
+            <div style="padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);border-right:3px solid #F97316;">
+              <div style="font-size:12px;font-weight:700;color:var(--text);">5. القيادة بالقدوة</div>
+              <div style="font-size:11px;color:var(--text-muted);">"افعلوا مثلي" — فعّالة مع فرق ذات كفاءة عالية فقط</div>
+            </div>
+            <div style="padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);border-right:3px solid #EF4444;">
+              <div style="font-size:12px;font-weight:700;color:var(--text);">6. القيادة الآمرة</div>
+              <div style="font-size:11px;color:var(--text-muted);">"نفّذوا الآن" — فقط في الأزمات الحقيقية. استخدامها المتكرر يُدمّر الروح المعنوية</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">مهارات الـ Feedback الفعّال</div>
+          <div style="margin-top:10px;">
+            <div style="padding:14px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);border-radius:var(--radius-md);margin-bottom:12px;">
+              <div style="font-size:11px;font-weight:800;color:#22C55E;margin-bottom:6px;">✅ نموذج SBI — Situation, Behavior, Impact</div>
+              <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">
+                <strong style="color:var(--text);">الموقف:</strong> "في اجتماع أمس..."<br>
+                <strong style="color:var(--text);">السلوك:</strong> "لاحظت أنك قاطعت العميل 3 مرات..."<br>
+                <strong style="color:var(--text);">الأثر:</strong> "هذا جعل العميل يشعر أن رأيه غير مسموع."
+              </div>
+            </div>
+            <div style="padding:14px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:var(--radius-md);margin-bottom:12px;">
+              <div style="font-size:11px;font-weight:800;color:#EF4444;margin-bottom:6px;">❌ أخطاء شائعة في الـ Feedback</div>
+              <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">
+                • "أنت دائماً..." — التعميم يولّد دفاعية<br>
+                • Feedback أمام الآخرين — يُهين ولا يُصلح<br>
+                • Sandwich Method المفرط — الناس تتعلم تتجاهل المجاملة
+              </div>
+            </div>
+            <div style="padding:14px;background:var(--accent-dim);border:1px solid var(--border-hover);border-radius:var(--radius-md);">
+              <div style="font-size:11px;font-weight:800;color:var(--accent);margin-bottom:6px;">💡 القاعدة الذهبية</div>
+              <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">امدح علناً، انتقد سراً. الـ Feedback الفوري أفضل 10x من الـ Feedback المتأخر. وفي كل الأحوال: ركّز على السلوك لا الشخص.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PAGE: JOURNAL -->
+    <section class="page" id="page-journal">
+      <div class="page-header">
+        <h1>يوميات التأمل</h1>
+        <p>مساحتك الخاصة للتفكير والتأمل — الكتابة التأملية تُحسّن الوعي الذاتي بنسبة 42% (دراسة Cambridge 2019)</p>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-title">يوميات اليوم — الاثنين 11 مايو</div>
+          <textarea class="journal-area" placeholder="اكتب هنا... ما الذي تعلمته اليوم؟ ما الذي أشعر به؟ ما الذي أريد تحسينه غداً؟"></textarea>
+          <div class="journal-prompts">
+            <span class="journal-prompt" onclick="addPrompt('ما أكبر إنجاز حققته اليوم؟')">إنجاز اليوم</span>
+            <span class="journal-prompt" onclick="addPrompt('ما الشعور السائد لديّ الآن ولماذا؟')">مشاعري الآن</span>
+            <span class="journal-prompt" onclick="addPrompt('ما الدرس الأهم الذي تعلمته؟')">درس اليوم</span>
+            <span class="journal-prompt" onclick="addPrompt('ماذا سأفعل بشكل مختلف غداً؟')">خطة الغد</span>
+            <span class="journal-prompt" onclick="addPrompt('ما الذي أنا ممتن له اليوم؟')">امتنان</span>
+          </div>
+          <button class="btn btn-primary" style="margin-top:14px;" onclick="saveJournal()">💾 حفظ اليوميات</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">تمارين التأمل الموجّه</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);cursor:pointer;transition:var(--transition);" onmouseover="this.style.borderColor='var(--border-hover)'" onmouseout="this.style.borderColor='var(--border)'">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="font-size:22px;">🧘</span>
+                <div>
+                  <div style="font-size:13px;font-weight:700;color:var(--text);">تأمل الصباح — 5 دقائق</div>
+                  <div style="font-size:11px;color:var(--text-muted);">ابدأ يومك بوعي وهدوء — تركيز على النية اليومية</div>
+                </div>
+              </div>
+            </div>
+            <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);cursor:pointer;transition:var(--transition);" onmouseover="this.style.borderColor='var(--border-hover)'" onmouseout="this.style.borderColor='var(--border)'">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="font-size:22px;">🌊</span>
+                <div>
+                  <div style="font-size:13px;font-weight:700;color:var(--text);">Body Scan — 10 دقائق</div>
+                  <div style="font-size:11px;color:var(--text-muted);">مسح الجسد من الرأس للقدمين — إطلاق التوتر المخزّن</div>
+                </div>
+              </div>
+            </div>
+            <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);cursor:pointer;transition:var(--transition);" onmouseover="this.style.borderColor='var(--border-hover)'" onmouseout="this.style.borderColor='var(--border)'">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="font-size:22px;">🎯</span>
+                <div>
+                  <div style="font-size:13px;font-weight:700;color:var(--text);">تأمل التركيز — 15 دقيقة</div>
+                  <div style="font-size:11px;color:var(--text-muted);">تمرين الانتباه المُركّز — بناء "عضلة" التركيز</div>
+                </div>
+              </div>
+            </div>
+            <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);cursor:pointer;transition:var(--transition);" onmouseover="this.style.borderColor='var(--border-hover)'" onmouseout="this.style.borderColor='var(--border)'">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="font-size:22px;">🌙</span>
+                <div>
+                  <div style="font-size:13px;font-weight:700;color:var(--text);">تأمل المساء — 7 دقائق</div>
+                  <div style="font-size:11px;color:var(--text-muted);">مراجعة اليوم بدون حكم — تحضير العقل للنوم العميق</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gratitude Section -->
+      <div class="card">
+        <div class="card-title">قائمة الامتنان اليومية</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:14px;">Robert Emmons (UC Davis): الامتنان المنتظم يرفع السعادة 25% ويُحسّن النوم بنسبة 10%</div>
+        <div style="display:flex;flex-direction:column;gap:10px;" id="gratitudeList">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="color:var(--accent);font-size:16px;">1.</span>
+            <input type="text" placeholder="شيء أنا ممتن له اليوم..." style="flex:1;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;color:var(--text);font-family:var(--font);font-size:13px;outline:none;">
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="color:var(--accent);font-size:16px;">2.</span>
+            <input type="text" placeholder="شيء آخر أنا ممتن له..." style="flex:1;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;color:var(--text);font-family:var(--font);font-size:13px;outline:none;">
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="color:var(--accent);font-size:16px;">3.</span>
+            <input type="text" placeholder="شيء ثالث..." style="flex:1;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;color:var(--text);font-family:var(--font);font-size:13px;outline:none;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PAGE: CALL CENTER (compact version) -->
+    <section class="page" id="page-callcenter">
+      <div class="page-header">
+        <h1>وحدة الكول سنتر</h1>
+        <p>المهارات الأساسية للتواصل الهاتفي — سكريبتات جاهزة ومبادئ نفسية مثبتة علمياً</p>
+      </div>
+
+      <div class="grid-4" style="margin-bottom:20px;">
+        <div class="stat-card"><div class="stat-icon">📞</div><div><div class="stat-value">6</div><div class="stat-label">مهارات أساسية</div></div></div>
+        <div class="stat-card"><div class="stat-icon">📋</div><div><div class="stat-value">10</div><div class="stat-label">سيناريوهات</div></div></div>
+        <div class="stat-card"><div class="stat-icon">🧠</div><div><div class="stat-value">5</div><div class="stat-label">مبادئ نفسية</div></div></div>
+        <div class="stat-card"><div class="stat-icon">⭐</div><div><div class="stat-value">4.7</div><div class="stat-label">متوسط التقييم</div></div></div>
+      </div>
+
+      <!-- Key Skills Summary -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-title">المهارات الست الأساسية</div>
+        <div class="grid-3" style="margin-top:12px;">
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid var(--accent);">
+            <div style="font-size:18px;margin-bottom:6px;">📞</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">فن الاستقبال الأول</div>
+            <div style="font-size:11px;color:var(--text-muted);">أول 7 ثوانٍ تُحدد الانطباع. ابتسم، عرّف نفسك، واسأل كيف تساعد.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #EF4444;">
+            <div style="font-size:18px;margin-bottom:6px;">🔥</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">إدارة العميل الغاضب</div>
+            <div style="font-size:11px;color:var(--text-muted);">تقنية HEAT: استمع → تعاطف → اعتذر → تصرّف. الغضب يُحارب بالفهم لا بالمنطق.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #8B5CF6;">
+            <div style="font-size:18px;margin-bottom:6px;">👂</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">الاستماع النشط</div>
+            <div style="font-size:11px;color:var(--text-muted);">لخّص ما قاله العميل بكلماتك. "أيوه بالضبط" = أنت في الموجة الصحيحة.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #EAB308;">
+            <div style="font-size:18px;margin-bottom:6px;">🎙️</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">التحكم في النبرة</div>
+            <div style="font-size:11px;color:var(--text-muted);">38% من التواصل الهاتفي = نبرة الصوت. ابتسم وأنت تتكلم — العميل يسمع الابتسامة.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #22C55E;">
+            <div style="font-size:18px;margin-bottom:6px;">✅</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">إغلاق المكالمة</div>
+            <div style="font-size:11px;color:var(--text-muted);">لخّص، حدد الخطوة التالية، اسأل "في شي ثاني؟"، اختم بإيجابية.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #EC4899;">
+            <div style="font-size:18px;margin-bottom:6px;">🔀</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">التحويل باحترافية</div>
+            <div style="font-size:11px;color:var(--text-muted);">اشرح السبب، أبلغ الزميل بالتفاصيل، لا تجعل العميل يكرر كلامه.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Psychology Principles -->
+      <div class="card">
+        <div class="card-title">المبادئ النفسية الخمسة خلف المكالمة</div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px;">
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span>🎙️</span>
+              <span style="font-size:13px;font-weight:700;color:var(--text);">Vocal Mirroring — المرايا الصوتية</span>
+              <span class="tag accent">تأثير عالي جداً</span>
+            </div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">عندما تعكس نبرة العميل وسرعة كلامه، تُنشّط المرايا العصبية وتُولّد ثقة لاواعية. تطابق مرحلياً ثم انزلق نحو الهدوء ليتبعك.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span>🧠</span>
+              <span style="font-size:13px;font-weight:700;color:var(--text);">Cognitive Load Reduction — تخفيف العبء المعرفي</span>
+              <span class="tag blue">تأثير عالي</span>
+            </div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">استخدم جُملاً من 7–9 كلمات. قدّم الحلول تسلسلياً "خطوة ← تأكيد ← خطوة" وليس فهرساً كاملاً دفعة واحدة.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span>🏷️</span>
+              <span style="font-size:13px;font-weight:700;color:var(--text);">Tactical Labeling — التسمية التكتيكية</span>
+              <span class="tag accent">تأثير عالي جداً</span>
+            </div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">استخدم "يبدو أنك..." بدل "أنا أفهم مشاعرك". تسمية المشاعر تُهدئ اللوزة الدماغية وتفتح مسار التفكير المنطقي.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span>📈</span>
+              <span style="font-size:13px;font-weight:700;color:var(--text);">Peak-End Rule — قاعدة الذروة والنهاية</span>
+              <span class="tag yellow">تأثير متوسط–عالي</span>
+            </div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">الذاكرة تحفظ الذروة العاطفية والنهاية فقط. خصّص آخر 90 ثانية لإضافة قيمة غير متوقعة — هذا ما سيتذكره العميل.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span>🔄</span>
+              <span style="font-size:13px;font-weight:700;color:var(--text);">Emotional Contagion — العدوى العاطفية</span>
+              <span class="tag red">تأثير مزدوج / خطر</span>
+            </div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">المشاعر معدية بيولوجياً. قبل كل مكالمة: 3 أنفاس + ابتسامة حقيقية. بعد كل مكالمة عدوانية: 90 ثانية تفريغ قبل المكالمة التالية.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PAGE: SALES -->
+    <section class="page" id="page-sales">
+      <div class="page-header">
+        <h1>وحدة المبيعات</h1>
+        <p>إطار SPIN المعدّل عربياً + استراتيجيات التعامل مع الاعتراضات + دورة البيع الكاملة</p>
+      </div>
+
+      <div class="grid-4" style="margin-bottom:20px;">
+        <div class="stat-card"><div class="stat-icon">🎯</div><div><div class="stat-value">SPIN</div><div class="stat-label">إطار الأسئلة</div></div></div>
+        <div class="stat-card"><div class="stat-icon">🛡️</div><div><div class="stat-value">7</div><div class="stat-label">اعتراضات شائعة</div></div></div>
+        <div class="stat-card"><div class="stat-icon">🔄</div><div><div class="stat-value">7</div><div class="stat-label">مراحل دورة البيع</div></div></div>
+        <div class="stat-card"><div class="stat-icon">📈</div><div><div class="stat-value">65<span style="font-size:14px;color:var(--text-muted)">%</span></div><div class="stat-label">نسبة الإتمام</div></div></div>
+      </div>
+
+      <!-- SPIN Framework -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-title">إطار SPIN — أربعة أنواع من الأسئلة</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px;">
+          <div style="padding:16px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid var(--accent);text-align:center;">
+            <div style="font-size:32px;font-weight:900;color:var(--accent);margin-bottom:6px;">S</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">أسئلة الوضع</div>
+            <div style="font-size:11px;color:var(--text-muted);line-height:1.6;">Situation — افهم سياق العميل الحالي. "حالياً كيف تتعاملون مع...؟"</div>
+          </div>
+          <div style="padding:16px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #EF4444;text-align:center;">
+            <div style="font-size:32px;font-weight:900;color:#EF4444;margin-bottom:6px;">P</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">أسئلة المشكلة</div>
+            <div style="font-size:11px;color:var(--text-muted);line-height:1.6;">Problem — اكشف الألم. "هل تواجهون صعوبة في...؟"</div>
+          </div>
+          <div style="padding:16px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #EAB308;text-align:center;">
+            <div style="font-size:32px;font-weight:900;color:#EAB308;margin-bottom:6px;">I</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">أسئلة التداعيات</div>
+            <div style="font-size:11px;color:var(--text-muted);line-height:1.6;">Implication — ضخّم الألم. "كيف يؤثر هذا على...؟"</div>
+          </div>
+          <div style="padding:16px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);border-top:3px solid #22C55E;text-align:center;">
+            <div style="font-size:32px;font-weight:900;color:#22C55E;margin-bottom:6px;">N</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">أسئلة العائد</div>
+            <div style="font-size:11px;color:var(--text-muted);line-height:1.6;">Need-Payoff — اجعله يصف الحل. "لو وجدتم حلاً لهذا، ماذا يعني لكم؟"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Common Objections -->
+      <div class="card">
+        <div class="card-title">التعامل مع أشهر 5 اعتراضات</div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px;">
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">1. "السعر غالي"</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;"><strong style="color:var(--accent);">الرد:</strong> "أفهم تماماً. خليني أسألك: لو قارنّا التكلفة بالنتيجة اللي رح تحصلها — كم يوفر عليك هذا الحل شهرياً؟" ← حوّل المحادثة من السعر إلى القيمة.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">2. "أحتاج أفكر"</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;"><strong style="color:var(--accent);">الرد:</strong> "طبيعي جداً. بس عشان أفيدك أكثر — إيش بالضبط اللي محتاج تفكر فيه؟ السعر؟ التوقيت؟ المنتج نفسه؟" ← حدد العائق الحقيقي.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">3. "عندنا مزود حالي"</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;"><strong style="color:var(--accent);">الرد:</strong> "ممتاز، وهذا يعني إنكم تفهمون أهمية هذا الحل. سؤالي: لو كان عندكم فرصة تحسّنون النتيجة بنسبة X% بنفس الميزانية — يستاهل تسمعوا كيف؟"</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">4. "أرسلوا لي إيميل"</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;"><strong style="color:var(--accent);">الرد:</strong> "بكل سرور. بس عشان أرسل لك الشي اللي يفيدك فعلاً — ممكن أسألك سؤالين سريعين؟" ← لا ترسل بروشور عام — خصّص.</div>
+          </div>
+          <div style="padding:14px;background:var(--surface-2);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">5. "مو الوقت المناسب"</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;"><strong style="color:var(--accent);">الرد:</strong> "أحترم وقتك تماماً. بس سؤال واحد: المشكلة اللي تكلمنا عنها — إذا ما تحلها الحين، كم رح تكلفك خلال 3 أشهر القادمة؟" ← Loss Aversion.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+</div>
+
+<script>
+// ===== PAGE NAVIGATION =====
+function showPage(pageId, navItem) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target page
+  const page = document.getElementById('page-' + pageId);
+  if (page) page.classList.add('active');
+  // Update nav
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (navItem) navItem.classList.add('active');
+  // Update topbar
+  const titles = {
+    dashboard: 'لوحة التحكم',
+    selfdev: 'الذكاء العاطفي',
+    habits: 'تتبع العادات',
+    productivity: 'الإنتاجية',
+    negotiation: 'فن التفاوض',
+    leadership: 'مهارات القيادة',
+    journal: 'يوميات التأمل',
+    callcenter: 'وحدة كول سنتر',
+    sales: 'المبيعات'
+  };
+  document.getElementById('topbar-title').textContent = titles[pageId] || pageId;
+  document.getElementById('topbar-breadcrumb').textContent = 'الرئيسية / ' + (titles[pageId] || pageId);
+}
+
+// ===== POMODORO TIMER =====
+let pomoInterval = null;
+let pomoSeconds = 25 * 60;
+let pomoRunning = false;
+let pomoSessions = 0;
+
+function startPomodoro() {
+  if (pomoRunning) {
+    clearInterval(pomoInterval);
+    pomoRunning = false;
+    document.getElementById('pomoCircle').classList.remove('running');
+    return;
+  }
+  pomoRunning = true;
+  document.getElementById('pomoCircle').classList.add('running');
+  pomoInterval = setInterval(() => {
+    pomoSeconds--;
+    if (pomoSeconds <= 0) {
+      clearInterval(pomoInterval);
+      pomoRunning = false;
+      pomoSessions++;
+      document.getElementById('pomoCount').textContent = pomoSessions + ' جلسات اليوم';
+      document.getElementById('pomoCircle').classList.remove('running');
+      document.getElementById('pomoLabel').textContent = 'انتهت الجلسة! خذ استراحة 5 دقائق';
+      pomoSeconds = 25 * 60;
+      updatePomoDisplay();
+      return;
+    }
+    updatePomoDisplay();
+  }, 1000);
+}
+
+function resetPomodoro() {
+  clearInterval(pomoInterval);
+  pomoRunning = false;
+  pomoSeconds = 25 * 60;
+  document.getElementById('pomoCircle').classList.remove('running');
+  document.getElementById('pomoLabel').textContent = 'جلسة تركيز — 25 دقيقة';
+  updatePomoDisplay();
+}
+
+function updatePomoDisplay() {
+  const m = Math.floor(pomoSeconds / 60);
+  const s = pomoSeconds % 60;
+  document.getElementById('pomoTime').textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+
+// ===== BREATHING EXERCISE =====
+let breatheRunning = false;
+let breatheTimeout = null;
+
+function startBreathing() {
+  if (breatheRunning) return;
+  breatheRunning = true;
+  const circle = document.getElementById('breatheCircle');
+  const label = document.getElementById('breatheLabel');
+  let cycles = 0;
+  const maxCycles = 4;
+
+  function doCycle() {
+    if (cycles >= maxCycles) {
+      circle.className = 'breathe-circle';
+      circle.textContent = 'انتهى!';
+      label.textContent = 'أحسنت! كرّر هذا التمرين 3 مرات يومياً';
+      breatheRunning = false;
+      return;
+    }
+    // Inhale 4s
+    circle.className = 'breathe-circle inhale';
+    circle.textContent = 'شهيق... 4';
+    label.textContent = 'تنفّس بعمق من أنفك';
+    let count = 4;
+    let inhaleInt = setInterval(() => { count--; if(count>0) circle.textContent = 'شهيق... '+count; }, 1000);
+    
+    breatheTimeout = setTimeout(() => {
+      clearInterval(inhaleInt);
+      // Hold 7s
+      circle.className = 'breathe-circle';
+      circle.textContent = 'حبس... 7';
+      label.textContent = 'احبس نفَسك';
+      let hcount = 7;
+      let holdInt = setInterval(() => { hcount--; if(hcount>0) circle.textContent = 'حبس... '+hcount; }, 1000);
+      
+      breatheTimeout = setTimeout(() => {
+        clearInterval(holdInt);
+        // Exhale 8s
+        circle.className = 'breathe-circle exhale';
+        circle.textContent = 'زفير... 8';
+        label.textContent = 'أخرج الهواء ببطء من فمك';
+        let ecount = 8;
+        let exInt = setInterval(() => { ecount--; if(ecount>0) circle.textContent = 'زفير... '+ecount; }, 1000);
+        
+        breatheTimeout = setTimeout(() => {
+          clearInterval(exInt);
+          cycles++;
+          doCycle();
+        }, 8000);
+      }, 7000);
+    }, 4000);
+  }
+  doCycle();
+}
+
+// ===== MOOD TRACKER =====
+function selectMood(btn, mood) {
+  document.querySelectorAll('#moodTracker button').forEach(b => {
+    b.style.borderColor = 'var(--border)';
+    b.style.background = 'var(--surface-2)';
+  });
+  btn.style.borderColor = 'var(--accent)';
+  btn.style.background = 'var(--accent-dim)';
+  const result = document.getElementById('moodResult');
+  const tips = {
+    'ممتاز': 'رائع! حالتك المزاجية ممتازة — استغل هذه الطاقة في مهام تتطلب إبداع وتواصل.',
+    'جيد': 'جيد! طاقتك مستقرة — وقت مناسب للعمل العميق والتعلم.',
+    'عادي': 'لا بأس — جرّب تمرين التنفس 4-7-8 أو امشِ 10 دقائق لرفع الطاقة.',
+    'متوتر': 'أفهمك. التوتر طبيعي — جرّب الآن: 3 أنفاس عميقة + سمِّ 3 أشياء تراها حولك (Grounding).',
+    'حزين': 'مشاعرك مهمة. اكتب ما تشعر به في يومياتك — الكتابة تُخفف الحمل النفسي بشكل مثبت علمياً.'
+  };
+  result.textContent = tips[mood];
+  result.style.display = 'block';
+}
+
+// ===== HABIT TRACKER GRID =====
+function initHabitGrid(containerId, completedDays) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  for (let i = 1; i <= 21; i++) {
+    const day = document.createElement('div');
+    day.className = 'habit-day' + (completedDays.includes(i) ? ' done' : '') + (i === 15 ? ' today' : '');
+    day.textContent = i;
+    day.onclick = function() { this.classList.toggle('done'); };
+    container.appendChild(day);
+  }
+}
+
+// Initialize habit grids
+document.addEventListener('DOMContentLoaded', function() {
+  initHabitGrid('habitReading', [1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
+  initHabitGrid('habitMeditation', [1,2,3,5,6,7,8,10,11,12,13,14]);
+  initHabitGrid('habitExercise', [1,3,4,5,7,8,10,11,13,14]);
+  initHabitGrid('habitWriting', [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]);
+});
+
+// ===== JOURNAL =====
+function addPrompt(text) {
+  const area = document.querySelector('.journal-area');
+  if (area) {
+    area.value += (area.value ? '\n\n' : '') + text + '\n';
+    area.focus();
+  }
+}
+
+function saveJournal() {
+  const area = document.querySelector('.journal-area');
+  if (area && area.value.trim()) {
+    localStorage.setItem('journal_' + new Date().toISOString().split('T')[0], area.value);
+    alert('تم حفظ يومياتك بنجاح!');
+  }
+}
+
+// ===== DAILY QUOTES =====
+const quotes = [
+  { text: 'النجاح ليس نهائياً، والفشل ليس قاتلاً — إنها الشجاعة للاستمرار هي ما يهم', author: 'ونستون تشرشل' },
+  { text: 'لا تخف من البطء، خف فقط من التوقف', author: 'حكمة صينية' },
+  { text: 'إن لم تستطع أن تفعل أشياء عظيمة، فافعل أشياء صغيرة بطريقة عظيمة', author: 'نابليون هيل' },
+  { text: 'الانضباط هو الجسر بين الأهداف والإنجاز', author: 'جيم رون' },
+  { text: 'لن تستطيع عبور المحيط حتى تتحلى بالشجاعة لتغيب عن مرأى الشاطئ', author: 'كريستوفر كولومبوس' },
+  { text: 'ليس المهم أن تكون الأفضل — المهم أن تكون أفضل مما كنت بالأمس', author: 'واين داير' },
+  { text: 'العادات الصغيرة اليومية هي من تصنع النتائج الكبيرة', author: 'جيمس كلير' },
+  { text: 'بين المثير والاستجابة هناك مساحة. في تلك المساحة تكمن حريتنا وقوتنا', author: 'فيكتور فرانكل' }
+];
+
+function setDailyQuote() {
+  const dayIndex = new Date().getDate() % quotes.length;
+  const q = quotes[dayIndex];
+  const el = document.getElementById('dailyQuote');
+  const auth = document.getElementById('quoteAuthor');
+  if (el) el.textContent = q.text;
+  if (auth) auth.textContent = '— ' + q.author;
+}
+setDailyQuote();
+</script>
+</body>
+</html>
